@@ -11,6 +11,7 @@ import DownArrow from "./svg/DownArrow";
 import MenuIcon from "./svg/MenuIcon";
 import CrossIcon from "./svg/CrossIcon";
 import { Figtree } from "@next/font/google";
+import Link from "next/link";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -21,30 +22,33 @@ const figtree = Figtree({
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
- 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
   return (
-    <nav className={`${figtree.variable} bg-gray-50 h-[157px] border-b border-[#DFE1E3]`}>
+    <nav
+      className={`${figtree.variable}  fixed z-50 w-full top-0 left-0 right-0 bg-gray-50 h-[157px] border-b border-[#DFE1E3]`}
+    >
       <div className="max-w-[1511px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Image
-            src={logo} // Replace with actual logo path
-            alt="Chez Tati"
-            width={40}
-            height={40} // Ensure proper dimensions
-            className="w-[186px] h-[86px] hidden md:block"
-          />
-          <Image
-            src={responsive_logo} // Replace with actual logo path
-            alt="Chez Tati"
-            width={20}
-            height={20} // Ensure proper dimensions
-            className="w-[40px] h-[40px] md:hidden"
-          />
+          <Link href="/">
+            <Image
+              src={logo} // Replace with actual logo path
+              alt="Chez Tati"
+              width={40}
+              height={40} // Ensure proper dimensions
+              className="w-[186px] h-[86px] hidden md:block"
+            />
+            <Image
+              src={responsive_logo} // Replace with actual logo path
+              alt="Chez Tati"
+              width={20}
+              height={20} // Ensure proper dimensions
+              className="w-[40px] h-[40px] md:hidden"
+            />
+          </Link>
         </div>
 
         {/* Mobile Hamburger Menu Button */}
