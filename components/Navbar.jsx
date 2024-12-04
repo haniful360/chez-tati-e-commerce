@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image"; // Next.js optimized images
 import logo from "@/public/logo/logo.svg";
 import responsive_logo from "@/public/logo/mobile-logo.svg";
@@ -10,11 +10,30 @@ import UserIcon from "./svg/UserIcon";
 import DownArrow from "./svg/DownArrow";
 import MenuIcon from "./svg/MenuIcon";
 import CrossIcon from "./svg/CrossIcon";
-import { Figtree } from "@next/font/google";
+
 import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -22,22 +41,22 @@ const Navbar = () => {
 
   return (
     <nav className="  fixed z-50 w-full top-0 left-0 right-0 bg-gray-50 h-[157px] border-b border-[#DFE1E3]">
-      <div className="max-w-[1511px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link href="/">
             <Image
-              src={logo} // Replace with actual logo path
+              src={logo}
               alt="Chez Tati"
               width={40}
-              height={40} // Ensure proper dimensions
+              height={40}
               className="w-[186px] h-[86px] hidden md:block"
             />
             <Image
-              src={responsive_logo} // Replace with actual logo path
+              src={responsive_logo}
               alt="Chez Tati"
               width={20}
-              height={20} // Ensure proper dimensions
+              height={20}
               className="w-[40px] h-[40px] md:hidden"
             />
           </Link>
@@ -67,7 +86,7 @@ const Navbar = () => {
             />
 
             {/* Search Button */}
-            <button className="bg-orange-500 text-white px-4 py-2 rounded-r-md hover:bg-orange-600 h-[46px] w-[98px]">
+            <button className="bg-[#EA5326] text-white px-4 py-2 rounded-r-md hover:bg-orange-600 h-[46px] w-[98px]">
               Search
             </button>
           </div>
@@ -75,38 +94,55 @@ const Navbar = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex space-x-6 mt-4 md:mt-0 font-figtree text-[#232323]">
-          <div className="relative group">
-            <button className="hover:text-orange-500 flex items-center gap-[1px]">
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={toggleDropdown}
+              className="hover:text-orange-500 font-semibold flex items-center gap-[1px]"
+            >
               All Category
               <DownArrow />
             </button>
-            <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity">
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-              >
-                Category 1
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-              >
-                Category 2
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-              >
-                Category 3
-              </a>
-            </div>
+            {isOpen && (
+              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  All Categories
+                </Link>
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Category 2
+                </Link>
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Category 3
+                </Link>
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Category 4
+                </Link>
+                <Link
+                  href="#"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Category 5
+                </Link>
+              </div>
+            )}
           </div>
-          <a href="#" className="hover:text-orange-500">
+          <Link href="#" className="hover:text-orange-500 font-semibold">
             About Us
-          </a>
-          <a href="#" className="hover:text-orange-500">
+          </Link>
+          <Link href="#" className="hover:text-orange-500 font-semibold">
             Contact Us
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Icons */}
@@ -137,38 +173,38 @@ const Navbar = () => {
                 <DownArrow />
               </button>
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity">
-                <a
+                <Link
                   href="#"
                   className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
                 >
                   Category 1
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
                 >
                   Category 2
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
                 >
                   Category 3
-                </a>
+                </Link>
               </div>
             </div>
-            <a
+            <Link
               href="#"
               className="block py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
             >
               About Us
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="block py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
           <div className="lg:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
             <button className="text-gray-700 hover:text-orange-500">

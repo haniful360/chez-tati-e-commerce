@@ -6,6 +6,10 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import person1 from '@/public/images/person1.png'
+import Image from "next/image";
+// import person1 from '@/public/images/person2.png'
+
 
 export default function TestimonialSlider() {
   const testimonials = [
@@ -33,7 +37,7 @@ export default function TestimonialSlider() {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-orange-400 to-orange-500 py-12">
+    <div className="bg-gradient-to-r from-orange-500 to-[#EA5326] py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-semibold text-white text-center">
           What Our Customers Say
@@ -58,8 +62,8 @@ export default function TestimonialSlider() {
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                <img
-                  src={testimonial.image}
+                <Image
+                  src={person1}
                   alt={testimonial.name}
                   className="w-16 h-16 rounded-full object-cover mb-4"
                 />
