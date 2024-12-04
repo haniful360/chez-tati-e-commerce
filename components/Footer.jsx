@@ -97,7 +97,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Download App</h4>
             <div className="flex space-x-4">
               <Image src={qrcode} width={80} height={80} alt="" />
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3">
                 <Link href="#">
                   <Image src={apple} width={104} height={30} alt="" />
                 </Link>
