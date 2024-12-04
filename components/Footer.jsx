@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-wrap gap-8 ">
           {/* Left Section: Logo & Description */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2"  data-aos="fade-up">
             <Image src={logo} alt="" />
             <p className="text-[#F8FAFC] text-[14px]">
               Ecommerce is a free UI Kit from Paperpillar <br /> that you can
@@ -36,47 +36,47 @@ export default function Footer() {
           </div>
 
           {/* Center Section: Links */}
-          <div>
+          <div  data-aos="fade-up">
             <h4 className="font-semibold mb-3">Account</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#">My Account</a>
+                <Link href="#">My Account</Link>
               </li>
               <li>
-                <a href="#">Login / Register</a>
+                <Link href="#">Login / Register</Link>
               </li>
               <li>
-                <a href="#">Cart</a>
+                <Link href="#">Cart</Link>
               </li>
               <li>
-                <a href="#">Wishlist</a>
+                <Link href="#">Wishlist</Link>
               </li>
               <li>
-                <a href="#">Shop</a>
+                <Link href="#">Shop</Link>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div  data-aos="fade-up">
             <h4 className="font-semibold mb-3">Quick Link</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#">Privacy Policy</a>
+                <Link href="#">Privacy Policy</Link>
               </li>
               <li>
-                <a href="#">Terms of Use</a>
+                <Link href="#">Terms of Use</Link>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <Link href="#">FAQ</Link>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <Link href="#">Contact</Link>
               </li>
             </ul>
           </div>
 
           {/* Right Section: Support and Download */}
-          <div>
+          <div  data-aos="fade-up">
             <h4 className="font-semibold mb-3">Support</h4>
             <address className="text-gray-400 not-italic">
               111 Bijoy Sarani,
@@ -93,7 +93,7 @@ export default function Footer() {
               +88015-8888-9999
             </a>
           </div>
-          <div>
+          <div  data-aos="fade-up">
             <h4 className="font-semibold mb-3">Download App</h4>
             <div className="flex space-x-4">
               <Image src={qrcode} width={80} height={80} alt="" />

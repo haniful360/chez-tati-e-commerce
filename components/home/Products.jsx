@@ -69,8 +69,13 @@ const Products = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.map((product) => (
-            <div key={product.id} className="rounded-lg overflow-hidden">
+          {products.map((product,index) => (
+            <div
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              data-aos-delay={`${index * 100}`}
+              key={product.id}
+              className="rounded-lg overflow-hidden"
+            >
               {/* Product Image */}
               <div className="relative">
                 <Image

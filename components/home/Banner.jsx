@@ -10,22 +10,22 @@ const Banner = () => {
   return (
     <section className="bg-gray-100 py-12 font-sans mt-32">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-[30px] sm:text-[50px] md:text-[60px] lg:text-[80px] text-[#232323] font-bold leading-[1.2] lg:leading-[99px] mb-4 text-center">
+        <h2  data-aos="fade-top" className="text-[30px] sm:text-[50px] md:text-[60px] lg:text-[80px] text-[#232323] font-bold leading-[1.2] lg:leading-[99px] mb-4 text-center">
           The Best High-Quality
           <span className="text-[#232323] font-medium">
             <br /> Home Appliance
           </span>
           Products
         </h2>
-        <p className="text-[#232323] text-sm md:text-[20px] mb-4 md:mb-8">
+        <p data-aos="fade-top" className="text-[#232323] text-sm md:text-[20px] mb-4 md:mb-8">
           100+ Collections for your outfit inspirations this summer
         </p>
-        <button className="sm:w-[220px] md:w-[280px] lg:w-[344px] h-[40px] sm:h-[58px] rounded-[36px] px-3 py-2 md:px-6 md:py-3 bg-black text-white font-medium hover:bg-gray-800 text-center">
+        <button data-aos="fade-top" className="sm:w-[220px] md:w-[280px] lg:w-[344px] h-[40px] sm:h-[58px] rounded-[36px] px-3 py-2 md:px-6 md:py-3 bg-black text-white font-medium hover:bg-gray-800 text-center">
           View Category
         </button>
 
         {/* banner image */}
-        <div className="flex flex-col md:flex-row justify-center items-center p-4 bg-gray-50 rounded-lg mt-2 md:mt-8">
+        <div  data-aos="fade-up" className="flex flex-col md:flex-row justify-center items-center p-4 bg-gray-50 rounded-lg mt-2 md:mt-8">
           {/* Left Image */}
           <div className="relative w-full max-w-[1168px] h-auto md:h-[442px] p-4">
             <Image
