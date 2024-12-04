@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Swiper Pagination Dots */
+.swiper-pagination-bullet {
+    background-color: white;
+    opacity: 0.5;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: white;
+    opacity: 1;
+  }
+  
+  /* Navigation Arrows */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white;
+  }
+  
