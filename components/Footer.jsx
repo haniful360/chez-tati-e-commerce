@@ -1,5 +1,14 @@
 import Image from "next/image";
 import logo from "@/public/logo/footer_logo.svg";
+import facebook from "@/public/icon/Icon-Facebook.svg";
+import twitter from "@/public/icon/Icon-Twitter.svg";
+import instagram from "@/public/icon/icon-instagram.svg";
+import linkedin from "@/public/icon/Icon-Linkedin.svg";
+import qrcode from "@/public/images/Qr Code.png";
+import apple from "@/public/images/apple.png";
+import play from "@/public/images/play.png";
+
+import Link from "next/link";
 
 // components/Footer.js
 export default function Footer() {
@@ -87,23 +96,30 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3">Download App</h4>
             <div className="flex space-x-4">
-              <img src="/google-play.png" alt="Google Play" className="h-10" />
-              <img src="/app-store.png" alt="App Store" className="h-10" />
+              <Image src={qrcode} width={80} height={80} alt="" />
+              <div className="flex flex-col gap-2">
+                <Link href="#">
+                  <Image src={apple} width={104} height={30} alt="" />
+                </Link>
+                <Link href="#">
+                  <Image src={play} width={104} height={30} alt="" />
+                </Link>
+              </div>
             </div>
 
-            <div className="mt-4 flex space-x-4 text-white">
-              <a href="#">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#">
-                <i className="fab fa-linkedin"></i>
-              </a>
+            <div className="mt-6 flex space-x-4 text-white ">
+              <Link href="#">
+                <Image src={facebook} width={24} height={24} alt="" />
+              </Link>
+              <Link href="#">
+                <Image src={twitter} width={24} height={24} alt="" />
+              </Link>
+              <Link href="#">
+                <Image src={instagram} width={24} height={24} alt="" />
+              </Link>
+              <Link href="">
+                <Image src={linkedin} width={24} height={24} alt="" />
+              </Link>
             </div>
           </div>
         </div>
