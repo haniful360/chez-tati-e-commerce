@@ -22,6 +22,24 @@ const products = [
     price: "$125",
     image: "/images/shoe2.jpg",
   },
+  {
+    id: 4,
+    name: "Skateboard Shoe",
+    price: "$125",
+    image: "/images/shoe2.jpg",
+  },
+  {
+    id: 5,
+    name: "Skateboard Shoe",
+    price: "$125",
+    image: "/images/shoe2.jpg",
+  },
+  {
+    id: 6,
+    name: "Skateboard Shoe",
+    price: "$125",
+    image: "/images/shoe2.jpg",
+  },
 ];
 
 const Products = () => {
@@ -33,17 +51,17 @@ const Products = () => {
           <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
             Products
           </h1>
-          <div className="flex space-x-4">
-            <button className="px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-200 transition">
+          <div className="flex justify-end flex-wrap gap-4">
+            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition  sm:w-auto">
               New Arrival
             </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-200 transition">
+            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition  sm:w-auto">
               Discount
             </button>
-            <button className="px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-200 transition">
+            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition  sm:w-auto">
               Popular
             </button>
-            <button className="px-4 py-2 border border-red-500 text-white bg-red-500 rounded-full hover:bg-red-600 transition">
+            <button className="px-4 py-2 text-sm sm:text-base border border-red-500 text-white bg-red-500 rounded-full hover:bg-red-600 transition sm:w-auto">
               SHOES
             </button>
           </div>
@@ -52,10 +70,7 @@ const Products = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => (
-            <div
-              key={product.id}
-              className="rounded-lg overflow-hidden"
-            >
+            <div key={product.id} className="rounded-lg overflow-hidden">
               {/* Product Image */}
               <div className="relative">
                 <Image
