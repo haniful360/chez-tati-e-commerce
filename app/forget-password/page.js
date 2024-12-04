@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import signIn_banner from "@/public/icon/sign-in.svg";
 import Image from "next/image";
 

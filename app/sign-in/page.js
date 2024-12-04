@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SignIn = () => {
-
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -22,9 +21,7 @@ const SignIn = () => {
       />
       <div className="flex items-center justify-center bg-gray-100 py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            Sign In
-          </h2>
+          <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
           <form>
             {/* Email Input */}
@@ -64,7 +61,25 @@ const SignIn = () => {
               )}
             </div>
 
-           
+            <div className="flex items-center justify-between  mb-4">
+              <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="terms"
+                className="h-4 w-4 border border-gray-300 rounded"
+                required
+              />
+              <label htmlFor="terms" className="ml-2  text-sm">
+                Accept all
+              </label>
+              </div>
+
+              <div>
+                <Link href="/forget-password" className="font-medium">
+                  Forget Password?
+                </Link>
+              </div>
+            </div>
 
             {/* Submit Button */}
             <button className="w-full  py-2 bg-[#EA5326] text-white font-bold rounded-[62px] hover:bg-orange-600 transition-colors">
@@ -93,7 +108,9 @@ const SignIn = () => {
               <Link
                 href="/sign-up"
                 className="text-orange-500 hover:underline font-semibold"
-              > Sign up
+              >
+                {" "}
+                Sign up
               </Link>
             </p>
           </div>
