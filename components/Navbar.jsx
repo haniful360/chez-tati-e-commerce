@@ -16,6 +16,9 @@ import Link from "next/link";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(1);
+  const [wishlistCount, setWishlistCount] = useState(1);
+  
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -147,15 +150,36 @@ const Navbar = () => {
 
         {/* Desktop Icons */}
         <div className="hidden lg:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
-          <button className="text-gray-700 hover:text-orange-500">
-            <HeartIcon />
-          </button>
-          <button className="text-gray-700 hover:text-orange-500">
-            <CartIcon />
-          </button>
-          <button className="text-gray-700 hover:text-orange-500">
-            <UserIcon />
-          </button>
+          <div className="flex items-center gap-4">
+            {/* Wishlist Icon with Badge */}
+            <Link href="/wishlist-products">
+              <button className="relative text-gray-700 hover:text-orange-500">
+                <HeartIcon />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </button>
+            </Link>
+
+            {/* Cart Icon with Badge */}
+            <Link href="/shoping-cart">
+              <button className="relative text-gray-700 hover:text-orange-500">
+                <CartIcon />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </Link>
+          </div>
+          <Link href="/sign-up">
+            <button className="text-gray-700 hover:text-orange-500">
+              <UserIcon />
+            </button>
+          </Link>
         </div>
       </div>
 
