@@ -10,16 +10,24 @@ import UserIcon from "./svg/UserIcon";
 import DownArrow from "./svg/DownArrow";
 import MenuIcon from "./svg/MenuIcon";
 import CrossIcon from "./svg/CrossIcon";
+import { Figtree } from "@next/font/google";
+
+const figtree = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Add weights you want to use
+  variable: "--font-figtree",
+});
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+ 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
   return (
-    <nav className="bg-gray-50 h-[157px] border-b border-[#DFE1E3]">
+    <nav className={`${figtree.variable} bg-gray-50 h-[157px] border-b border-[#DFE1E3]`}>
       <div className="max-w-[1511px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -44,7 +52,7 @@ const Navbar = () => {
           onClick={toggleMenu}
           className="md:hidden text-gray-700 hover:text-orange-500"
         >
-         {isMenuOpen ? <CrossIcon/> :  <MenuIcon />}
+          {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
         </button>
 
         {/* Search Bar */}
@@ -167,18 +175,17 @@ const Navbar = () => {
             </a>
           </div>
           <div className="lg:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
-          <button className="text-gray-700 hover:text-orange-500">
-            <HeartIcon />
-          </button>
-          <button className="text-gray-700 hover:text-orange-500">
-            <CartIcon />
-          </button>
-          <button className="text-gray-700 hover:text-orange-500">
-            <UserIcon />
-          </button>
+            <button className="text-gray-700 hover:text-orange-500">
+              <HeartIcon />
+            </button>
+            <button className="text-gray-700 hover:text-orange-500">
+              <CartIcon />
+            </button>
+            <button className="text-gray-700 hover:text-orange-500">
+              <UserIcon />
+            </button>
+          </div>
         </div>
-        </div>
-        
       </div>
     </nav>
   );
