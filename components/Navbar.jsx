@@ -13,12 +13,6 @@ import CrossIcon from "./svg/CrossIcon";
 import { Figtree } from "@next/font/google";
 import Link from "next/link";
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Add weights you want to use
-  variable: "--font-figtree",
-});
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,9 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`${figtree.variable}  fixed z-50 w-full top-0 left-0 right-0 bg-gray-50 h-[157px] border-b border-[#DFE1E3]`}
-    >
+    <nav className="  fixed z-50 w-full top-0 left-0 right-0 bg-gray-50 h-[157px] border-b border-[#DFE1E3]">
       <div className="max-w-[1511px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
