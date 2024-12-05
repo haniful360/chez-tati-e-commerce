@@ -80,7 +80,7 @@ export default function Cart() {
                     >
                       <td className="py-4 px-2">
                         <div className="flex items-center gap-4">
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.name}
                             className="w-16 h-16 rounded-md object-cover"

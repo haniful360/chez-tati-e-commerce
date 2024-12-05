@@ -17,8 +17,10 @@ export default function Footer() {
       <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-wrap gap-8 ">
           {/* Left Section: Logo & Description */}
-          <div className="md:col-span-2"  data-aos="fade-up">
-            <Image src={logo} alt="" />
+          <div className="md:col-span-2" data-aos="fade-up">
+            <Link href="/">
+              <Image src={logo} alt="" />
+            </Link>
             <p className="text-[#F8FAFC] text-[14px]">
               Ecommerce is a free UI Kit from Paperpillar <br /> that you can
               use for your personal or <br /> commercial project.
@@ -36,7 +38,7 @@ export default function Footer() {
           </div>
 
           {/* Center Section: Links */}
-          <div  data-aos="fade-up">
+          <div data-aos="fade-up">
             <h4 className="font-semibold mb-3">Account</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
@@ -57,7 +59,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div  data-aos="fade-up">
+          <div data-aos="fade-up">
             <h4 className="font-semibold mb-3">Quick Link</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
@@ -76,7 +78,7 @@ export default function Footer() {
           </div>
 
           {/* Right Section: Support and Download */}
-          <div  data-aos="fade-up">
+          <div data-aos="fade-up">
             <h4 className="font-semibold mb-3">Support</h4>
             <address className="text-gray-400 not-italic">
               111 Bijoy Sarani,
@@ -93,7 +95,7 @@ export default function Footer() {
               +88015-8888-9999
             </a>
           </div>
-          <div  data-aos="fade-up">
+          <div data-aos="fade-up">
             <h4 className="font-semibold mb-3">Download App</h4>
             <div className="flex space-x-4">
               <Image src={qrcode} width={80} height={80} alt="" />

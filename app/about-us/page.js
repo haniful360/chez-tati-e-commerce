@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUs = () => {
     return (
         <div>
-            f
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, ab?
         </div>
     );
 };
