@@ -1,23 +1,47 @@
 // pages/cart.js
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import category_banner from "@/public/icon/category_banner.svg";
 import Image from "next/image";
 
 export default function Cart() {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      name: "Freezer",
-      price: 14,
-      quantity: 5,
-      image: "/freezer.jpg",
-    },
-    { id: 2, name: "Tv", price: 14, quantity: 1, image: "/tv.jpg" },
-  ]);
+  const [cart, setCart] = useState([]);
 
+  // Load cart data from localStorage when the component mounts
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(savedCart);
+  }, []);
+
+  // Update cart data in localStorage whenever the cart changes
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  // Add product to cart (check if product already exists and update quantity)
+  const addToCart = (product) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        // If the item already exists in the cart, increase its quantity
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // If the item does not exist, add it to the cart
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
+  };
+
+  // Update quantity of existing cart item
   const updateQuantity = (id, operation) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -34,6 +58,7 @@ export default function Cart() {
     );
   };
 
+  // Subtotal calculation
   const subtotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -80,18 +105,24 @@ export default function Cart() {
                     >
                       <td className="py-4 px-2">
                         <div className="flex items-center gap-4">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            className="w-16 h-16 rounded-md object-cover"
-                          />
+                          {item.image ? (
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              className="w-16 h-16 rounded-md object-cover"
+                              height={64}
+                              width={64}
+                            />
+                          ) : (
+                            <div className="w-16 h-16 bg-gray-200 rounded-md"></div>
+                          )}
                           <span className="text-sm lg:text-base">
                             {item.name}
                           </span>
                         </div>
                       </td>
                       <td className="text-sm lg:text-base px-2">
-                        ${item.price.toFixed(2)}
+                        ${Number(item.price).toFixed(2)}
                       </td>
                       <td className="px-2">
                         <div className="flex items-center gap-3 border-2 border-gray-300 w-[105px] rounded-full">
@@ -113,17 +144,24 @@ export default function Cart() {
                         </div>
                       </td>
                       <td className="text-sm lg:text-base px-2">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ${Number(item.price * item.quantity).toFixed(2)}
                       </td>
                       <td className="px-2">
                         <button
-                          onClick={() =>
-                            setCart((prevCart) =>
-                              prevCart.filter(
+                          onClick={() => {
+                            // Remove item from state
+                            setCart((prevCart) => {
+                              const updatedCart = prevCart.filter(
                                 (cartItem) => cartItem.id !== item.id
-                              )
-                            )
-                          }
+                              );
+                              // Update localStorage after removing the item
+                              localStorage.setItem(
+                                "cart",
+                                JSON.stringify(updatedCart)
+                              );
+                              return updatedCart;
+                            });
+                          }}
                           className="text-red-500"
                         >
                           ✕
@@ -135,7 +173,7 @@ export default function Cart() {
               </table>
             </div>
             <div className="mt-4 flex justify-between">
-              <Link href="#">
+              <Link href="/products">
                 <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded">
                   Return to shop
                 </button>
@@ -153,8 +191,10 @@ export default function Cart() {
                     confirmButtonText: "Yes, Remove All",
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      // Clear the cart
+                      // Clear the cart in state
                       setCart([]);
+                      // Remove the cart from localStorage
+                      localStorage.removeItem("cart");
                       // Show success message
                       Swal.fire(
                         "Cleared!",

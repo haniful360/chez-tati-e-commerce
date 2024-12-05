@@ -1,40 +1,48 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CartIcon from "../svg/CartIcon";
 import Buynow from "../svg/Buynow";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 const ProductInfo = ({ product }) => {
-  console.log("product", product);
   const router = useRouter();
 
   // State for quantity and price
   const [quantity, setQuantity] = useState(1);
-  const basePrice = 17.28; // Base price for a single product
-  const totalPrice = (basePrice * quantity).toFixed(2); // Calculate total price based on quantity
+  const basePrice = product.product.price; // Base price from the product object
+  const [totalPrice, setTotalPrice] = useState(basePrice); // Calculate total price based on quantity
 
   // Function to update quantity
   const updateQuantity = (action) => {
     if (action === "increment") {
-      setQuantity((prev) => prev + 1);
+      setQuantity((prev) => {
+        const newQuantity = prev + 1;
+        setTotalPrice((basePrice * newQuantity).toFixed(2)); // Update total price dynamically
+        return newQuantity;
+      });
     } else if (action === "decrement" && quantity > 1) {
-      setQuantity((prev) => prev - 1);
+      setQuantity((prev) => {
+        const newQuantity = prev - 1;
+        setTotalPrice((basePrice * newQuantity).toFixed(2)); // Update total price dynamically
+        return newQuantity;
+      });
     }
   };
 
   // Function to handle Add to Cart button click
   const handleAddToCart = () => {
-    const product = {
-      id: 1,
-      name: "Smart Freezer",
+    const productData = {
+      id: product.product.id,
+      name: product.product.title,
+      image: product.product.image, // Assuming the image URL is available in the product object
       quantity,
       price: totalPrice,
     };
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingProductIndex = cart.findIndex(
-      (item) => item.id === product.id
+      (item) => item.id === productData.id
     );
 
     if (existingProductIndex !== -1) {
@@ -45,7 +53,7 @@ const ProductInfo = ({ product }) => {
         confirmButtonText: "OK",
       });
     } else {
-      cart.push(product);
+      cart.push(productData);
       localStorage.setItem("cart", JSON.stringify(cart));
 
       Swal.fire({
@@ -59,24 +67,23 @@ const ProductInfo = ({ product }) => {
 
   // Function to handle Buy Now button click
   const handleBuyNow = () => {
-    const product = {
-      id: 1,
-      name: "Smart Freezer",
+    const productData = {
+      id: product.product.id,
+      name: product.product.title,
+      image: product.product.image, // Assuming the image URL is available in the product object
       quantity,
       price: totalPrice,
     };
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingProductIndex = cart.findIndex(
-      (item) => item.id === product.id
+      (item) => item.id === productData.id
     );
 
     if (existingProductIndex !== -1) {
-      // If the product is already in the cart, just update the quantity without showing the success alert
       cart[existingProductIndex].quantity += quantity;
     } else {
-      // Otherwise, add the product to the cart and show success alert
-      cart.push(product);
+      cart.push(productData);
 
       Swal.fire({
         title: "Success!",
@@ -84,15 +91,12 @@ const ProductInfo = ({ product }) => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        // After the alert is closed, redirect to the checkout page
         router.push("/shopping-cart");
       });
     }
 
-    // Store the updated cart in localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // If the product was already in the cart, immediately redirect to checkout without showing the success alert
     if (existingProductIndex !== -1) {
       router.push("/shopping-cart");
     }
@@ -111,7 +115,7 @@ const ProductInfo = ({ product }) => {
       <div className="mt-4 flex items-center gap-4">
         <span className="text-gray-400 line-through">$48.00</span>
         <span className="text-xl font-bold text-orange-500">
-          ${product.product.price}
+          ${totalPrice}
         </span>
         <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
           64% Off

@@ -16,7 +16,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(1);
+  const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(1);
 
   const dropdownRef = useRef(null);
@@ -143,11 +143,11 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link href="about-us" className="hover:text-orange-500 font-semibold">
+          <Link href="/about-us" className="hover:text-orange-500 font-semibold">
             About Us
           </Link>
           <Link
-            href="contact-us"
+            href="/contact-us"
             className="hover:text-orange-500 font-semibold"
           >
             Contact Us
@@ -170,7 +170,7 @@ const Navbar = () => {
             </Link>
 
             {/* Cart Icon with Badge */}
-            <Link href="#">
+            <Link href="/shopping-cart">
               <button className="relative text-gray-700 hover:text-orange-500">
                 <CartIcon />
                 {cartCount > 0 && (
