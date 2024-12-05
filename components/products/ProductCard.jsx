@@ -3,7 +3,8 @@ import Link from "next/link";
 import CartIcon from "../svg/CartIcon";
 
 const ProductCard = ({ product }) => {
-  const { name, price, image, isOutOfStock, discount } = product;
+  console.log(product);
+  const { title, price, image, isOutOfStock, discount } = product;
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-md p-2 relative group">
@@ -22,7 +23,7 @@ const ProductCard = ({ product }) => {
     {/* Image */}
     <Image
       src={image}
-      alt={name}
+      alt=''
       width={344}
       height={344}
       className="w-full h-[344px] object-cover rounded-md group-hover:scale-105 transition-all duration-300 ease-in-out"
@@ -44,7 +45,7 @@ const ProductCard = ({ product }) => {
     </button>
   
     {/* Details */}
-    <h4 className="font-bold text-base mt-4 text-[#EA5326]">{name}</h4>
+    <h4 className="font-bold text-base mt-4 text-[#EA5326]">{title}</h4>
     <p className=" mb-2 text-[#232323] text-base">${price}</p>
     <div className="flex items-center justify-between">
       <Link href="/wishlist">
