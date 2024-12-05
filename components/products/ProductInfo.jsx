@@ -5,7 +5,8 @@ import Buynow from "../svg/Buynow";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
-const ProductInfo = () => {
+const ProductInfo = ({product}) => {
+  console.log('product', product)
   const router = useRouter();
 
   // State for quantity and price
@@ -95,7 +96,7 @@ const ProductInfo = () => {
 
   return (
     <div className="lg:w-1/2">
-      <h2 className="text-2xl font-bold">Smart Freezer</h2>
+      <h2 className="text-2xl font-bold">{product.product.title}</h2>
       <div className="flex items-center gap-2 mt-2">
         <span className="text-yellow-500 text-lg">★★★★☆</span>
         <span className="text-gray-500 text-sm">(4 Reviews)</span>
@@ -105,21 +106,17 @@ const ProductInfo = () => {
       </div>
       <div className="mt-4 flex items-center gap-4">
         <span className="text-gray-400 line-through">$48.00</span>
-        <span className="text-xl font-bold text-orange-500">${totalPrice}</span>
+        <span className="text-xl font-bold text-orange-500">${product.product.price}</span>
         <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
           64% Off
         </span>
       </div>
       <hr className="my-5" />
       <p className="text-gray-600 mt-4">
-        <span className="font-semibold">Category</span>: Freeze
+        <span className="font-semibold">Category</span>: {product.product.category}
       </p>
       <p className="text-gray-600 mt-4">
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra...
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ex
-        non nihil animi sapiente laudantium mollitia repellat reiciendis nostrum
-        eum facilis, modi laborum ipsum labore. Dicta ea asperiores sunt
-        voluptatum.
+      {product.product.description}
       </p>
 
       <div className="mt-6 flex items-center gap-4">

@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-const PorductDetails = () => {
+const PorductDetails = ({product}) => {
   return (
     <div className="flex flex-col gap-4 lg:w-1/2">
       <div className="border rounded-md overflow-hidden">
         <Image
           width={100}
           height={100}
-          src="/product-image.jpg"
+          src={product.product.image}
           alt="Smart Freezer"
           className="w-full h-96 object-cover"
         />
@@ -18,21 +18,21 @@ const PorductDetails = () => {
           <Image
             width={100}
             height={100}
-            src="/thumbnail1.jpg"
+            src={product.product.image}
             alt="Thumbnail 1"
             className="w-20 h-20 object-cover border rounded-md cursor-pointer"
           />
           <Image
             width={100}
             height={100}
-            src="/thumbnail2.jpg"
+            src={product.product.image}
             alt="Thumbnail 2"
             className="w-20 h-20 object-cover border rounded-md cursor-pointer"
           />
           <Image
             width={100}
             height={100}
-            src="/thumbnail3.jpg"
+            src={product.product.image}
             alt="Thumbnail 3"
             className="w-20 h-20 object-cover border rounded-md cursor-pointer"
           />
