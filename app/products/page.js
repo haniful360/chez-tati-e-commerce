@@ -4,9 +4,9 @@ import Sidebar from "@/components/products/Sidebar";
 import { Suspense } from "react";
 
 export default async function ProductsPage() {
-  // Fetch data directly in the server component
+
   const response = await fetch("https://fakestoreapi.in/api/products", {
-    cache: "no-store", // Prevent caching if you want fresh data on every request
+    cache: "no-store",
   });
   const products = await response.json();
 
