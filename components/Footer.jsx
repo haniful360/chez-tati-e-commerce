@@ -14,7 +14,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white md:h-[360px] py-4 md:py-0 flex items-center">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between flex-wrap gap-8 ">
           {/* Left Section: Logo & Description */}
           <div className="md:col-span-2"  data-aos="fade-up">

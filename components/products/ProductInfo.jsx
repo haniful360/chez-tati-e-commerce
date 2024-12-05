@@ -1,12 +1,12 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import CartIcon from "../svg/CartIcon";
 import Buynow from "../svg/Buynow";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
-const ProductInfo = ({product}) => {
-  console.log('product', product)
+const ProductInfo = ({ product }) => {
+  console.log("product", product);
   const router = useRouter();
 
   // State for quantity and price
@@ -33,7 +33,9 @@ const ProductInfo = ({product}) => {
     };
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+    const existingProductIndex = cart.findIndex(
+      (item) => item.id === product.id
+    );
 
     if (existingProductIndex !== -1) {
       Swal.fire({
@@ -65,7 +67,9 @@ const ProductInfo = ({product}) => {
     };
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+    const existingProductIndex = cart.findIndex(
+      (item) => item.id === product.id
+    );
 
     if (existingProductIndex !== -1) {
       // If the product is already in the cart, just update the quantity without showing the success alert
@@ -106,18 +110,19 @@ const ProductInfo = ({product}) => {
       </div>
       <div className="mt-4 flex items-center gap-4">
         <span className="text-gray-400 line-through">$48.00</span>
-        <span className="text-xl font-bold text-orange-500">${product.product.price}</span>
+        <span className="text-xl font-bold text-orange-500">
+          ${product.product.price}
+        </span>
         <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
           64% Off
         </span>
       </div>
       <hr className="my-5" />
       <p className="text-gray-600 mt-4">
-        <span className="font-semibold">Category</span>: {product.product.category}
+        <span className="font-semibold">Category</span>:{" "}
+        {product.product.category}
       </p>
-      <p className="text-gray-600 mt-4">
-      {product.product.description}
-      </p>
+      <p className="text-gray-600 mt-4">{product.product.description}</p>
 
       <div className="mt-6 flex items-center gap-4">
         <div className="flex items-center gap-3 border-2 border-gray-300 w-[105px] rounded-full">

@@ -133,7 +133,7 @@ export default function CustomerExperience() {
 
   return (
     <div className="bg-gray-50 py-12">
-      <div className="container mx-auto px-4 sm:px-6 mb-4">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 mb-4">
         <h2 className="text-2xl sm:text-3xl lg:text-[46px] font-bold text-gray-900 leading-[50px]" data-aos="fade-up">
           Customer experience is <br /> <br /> important to us
         </h2>

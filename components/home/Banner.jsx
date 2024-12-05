@@ -9,7 +9,7 @@ import UpArrow from "../svg/UpArrow";
 const Banner = () => {
   return (
     <section className="bg-gray-100 py-12 font-sans mt-32">
-      <div className="container mx-auto px-4 text-center">
+      <div className="max-w-[1320px] mx-auto px-4 text-center">
         <h2  data-aos="fade-up" className="text-[30px] sm:text-[50px] md:text-[60px] lg:text-[80px] text-[#232323] font-bold leading-[1.2] lg:leading-[99px] mb-4 text-center">
           The Best High-Quality
           <span className="text-[#232323] font-medium">

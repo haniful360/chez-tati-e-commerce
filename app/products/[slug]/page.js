@@ -4,18 +4,14 @@ import PorductDetails from "@/components/products/PorductDetails";
 import ProductInfo from "@/components/products/ProductInfo";
 import CustomerFeedback from "@/components/products/CustomerFeedback";
 import category_banner from "@/public/icon/category_banner.svg";
-
 import Image from "next/image";
 
-// You need to wrap the `params` object using `React.use()` to ensure it’s resolved properly
 const ProductDynamicPage = ({ params }) => {
-  // Unwrap the params object using `React.use()`
   const { slug: id } = React.use(params);
 
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Fetch product details if `id` is available
     if (id) {
       const fetchProduct = async () => {
         const response = await fetch(

@@ -45,7 +45,7 @@ const products = [
 const Products = () => {
   return (
     <section className="bg-gray-100 py-12">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1320px]  mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
