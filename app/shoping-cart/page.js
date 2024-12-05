@@ -45,57 +45,65 @@ export default function Cart() {
           <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
             {/* Add overflow-x-auto wrapper */}
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px] lg:min-w-full">
                 <thead>
                   <tr>
-                    <th className="text-left font-medium text-gray-500">
+                    <th className="text-left font-medium text-gray-500 text-sm lg:text-base px-2">
                       PRODUCT
                     </th>
-                    <th className="text-left font-medium text-gray-500">
+                    <th className="text-left font-medium text-gray-500 text-sm lg:text-base px-2">
                       PRICE
                     </th>
-                    <th className="text-left font-medium text-gray-500">
+                    <th className="text-left font-medium text-gray-500 text-sm lg:text-base px-2">
                       QUANTITY
                     </th>
-                    <th className="text-left font-medium text-gray-500">
+                    <th className="text-left font-medium text-gray-500 text-sm lg:text-base px-2">
                       SUBTOTAL
                     </th>
-                    <th></th>
+                    <th className="text-left font-medium text-gray-500 px-2"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {cart.map((item) => (
                     <tr key={item.id} className="border-b">
-                      <td className="py-4">
+                      <td className="py-4 px-2">
                         <div className="flex items-center gap-4">
                           <img
                             src={item.image}
                             alt={item.name}
                             className="w-16 h-16 rounded-md object-cover"
                           />
-                          <span>{item.name}</span>
+                          <span className="text-sm lg:text-base">
+                            {item.name}
+                          </span>
                         </div>
                       </td>
-                      <td>${item.price.toFixed(2)}</td>
-                      <td>
-                        <div className="flex items-center gap-2">
+                      <td className="text-sm lg:text-base px-2">
+                        ${item.price.toFixed(2)}
+                      </td>
+                      <td className="px-2">
+                        <div className="flex items-center gap-3 border-2 border-gray-300 w-[105px] rounded-full">
                           <button
                             onClick={() => updateQuantity(item.id, "decrement")}
-                            className="px-3 py-1 bg-gray-200 rounded"
+                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full"
                           >
                             -
                           </button>
-                          <span>{item.quantity}</span>
+                          <span className="text-sm lg:text-base">
+                            {item.quantity}
+                          </span>
                           <button
                             onClick={() => updateQuantity(item.id, "increment")}
-                            className="px-3 py-1 bg-gray-200 rounded"
+                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full"
                           >
                             +
                           </button>
                         </div>
                       </td>
-                      <td>${(item.price * item.quantity).toFixed(2)}</td>
-                      <td>
+                      <td className="text-sm lg:text-base px-2">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </td>
+                      <td className="px-2">
                         <button
                           onClick={() =>
                             setCart((prevCart) =>
