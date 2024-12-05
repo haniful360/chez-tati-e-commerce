@@ -23,7 +23,10 @@ export default function ProductsPage() {
   ];
 
   return (
-    <div className="max-w-[1280px] mx-auto bg-gray-50 min-h-screen p-4 mt-40">
+    <div className="max-w-[1280px] mx-auto  min-h-screen mt-40 pb-10">
+        <div className="flex justify-end ">
+            <p className="text-base my-4"><span className="font-semibold">52</span> Results Found</p>
+        </div>
       <div className="flex flex-col md:flex-row gap-4">
         {/* Sidebar */}
         <Sidebar />
