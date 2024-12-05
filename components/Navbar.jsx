@@ -164,7 +164,7 @@ const Navbar = () => {
             </Link>
 
             {/* Cart Icon with Badge */}
-            <Link href="/shoping-cart">
+            <Link href="#">
               <button className="relative text-gray-700 hover:text-orange-500">
                 <CartIcon />
                 {cartCount > 0 && (
