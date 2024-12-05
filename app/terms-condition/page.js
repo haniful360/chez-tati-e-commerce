@@ -1,9 +1,8 @@
-import Head from 'next/head';
-import React from 'react';
+import React from "react";
 
-const AboutUs = () => {
-    return (
-        <>
+const TermsCondition = () => {
+  return (
+    <>
       <Head>
         <title>About Us</title>
       </Head>
@@ -67,7 +66,7 @@ const AboutUs = () => {
         </section>
       </div>
     </>
-    );
+  );
 };
 
-export default AboutUs;
+export default TermsCondition;
