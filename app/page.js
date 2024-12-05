@@ -1,6 +1,6 @@
 import Banner from "@/components/home/Banner";
 import CustomerExperience from "@/components/home/CustomerExperience";
-import Products from "@/components/home/Products";
+import Products from "@/components/home/TrendingProducts";
 import TestimonialSlider from "@/components/home/Testmonial";
 import Image from "next/image";
 

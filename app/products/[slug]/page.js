@@ -5,6 +5,7 @@ import ProductInfo from "@/components/products/ProductInfo";
 import CustomerFeedback from "@/components/products/CustomerFeedback";
 import category_banner from "@/public/icon/category_banner.svg";
 import Image from "next/image";
+import Loading from "@/components/loading";
 
 const ProductDynamicPage = ({ params }) => {
   const { slug: id } = React.use(params);
@@ -26,7 +27,7 @@ const ProductDynamicPage = ({ params }) => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div><Loading/></div>;
   }
 
   return (
