@@ -3,6 +3,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import category_banner from "@/public/icon/category_banner.svg";
+import Image from "next/image";
 
 export default function Cart() {
   const [cart, setCart] = useState([
@@ -38,9 +40,16 @@ export default function Cart() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 mt-20">
+    <div className="bg-gray-100 py-16 mt-20">
+      <Image
+        className="w-full"
+        src={category_banner}
+        height={130}
+        width={1200}
+        alt=""
+      />
       <div className="max-w-[1280px] mx-auto px-4">
-        <h1 className="text-3xl font-semibold mb-6">My Shopping Cart</h1>
+        <h1 className="text-3xl font-semibold my-10">My Shopping Cart</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
             {/* Add overflow-x-auto wrapper */}
@@ -65,7 +74,10 @@ export default function Cart() {
                 </thead>
                 <tbody>
                   {cart.map((item) => (
-                    <tr key={item.id} className="border-b">
+                    <tr
+                      key={item.id}
+                      className="border-b hover:bg-gray-50 transition ease-in duration-300"
+                    >
                       <td className="py-4 px-2">
                         <div className="flex items-center gap-4">
                           <img
@@ -85,7 +97,7 @@ export default function Cart() {
                         <div className="flex items-center gap-3 border-2 border-gray-300 w-[105px] rounded-full">
                           <button
                             onClick={() => updateQuantity(item.id, "decrement")}
-                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full"
+                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full hover:bg-[#EA5326] hover:text-white transition ease-in duration-300"
                           >
                             -
                           </button>
@@ -94,7 +106,7 @@ export default function Cart() {
                           </span>
                           <button
                             onClick={() => updateQuantity(item.id, "increment")}
-                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full"
+                            className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full hover:bg-[#EA5326] hover:text-white transition ease-in duration-300"
                           >
                             +
                           </button>
@@ -172,7 +184,7 @@ export default function Cart() {
               <span>Total:</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="w-full mt-4 px-4 py-2 bg-orange-500 text-white rounded-lg">
+            <button className="w-full mt-4 px-4 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300">
               Proceed to checkout
             </button>
           </div>
