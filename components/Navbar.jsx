@@ -18,8 +18,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(1);
-
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartCount(cartItems.length);
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

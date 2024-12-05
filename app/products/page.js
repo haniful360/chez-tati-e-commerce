@@ -12,10 +12,10 @@ export default async function ProductsPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="max-w-[1280px] mx-auto min-h-screen mt-40 pb-10">
+      <div className="max-w-[1320px] mx-auto min-h-screen mt-40 pb-10">
         <div className="flex justify-end">
           <p className="text-base my-4">
-            <span className="font-semibold">{products.products.length}</span>
+            <span className="font-semibold">{products.products.length} </span>
             Results Found
           </p>
         </div>
@@ -24,7 +24,7 @@ export default async function ProductsPage() {
           <Sidebar />
 
           {/* Products Grid */}
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {products.products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
