@@ -1,31 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
-import CartIcon from "../svg/CartIcon";
 import { useCart } from "@/context/CartContext";
 import Swal from "sweetalert2";
-import HeartIcon from "../svg/HeartIcon";
 import { useWishlist } from "@/context/WishListContext";
-
+import { useState } from "react"; // Import useState for loading state
+import ProductCartIcon from "../svg/ProductCartIcon";
+import WishlistIcon from "../svg/WishlistIcon";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, isOutOfStock, discount } = product;
   const { cart, addToCart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
+  const [loading, setLoading] = useState(false); // State to manage loading
+ 
 
   const isProductInWishlist = wishlist.some((item) => item.id === product.id);
 
   const handleWishlistToggle = () => {
-    toggleWishlist(product);
-    const action = isProductInWishlist ? "removed from" : "added to";
-    Swal.fire({
-      title: `Wishlist Updated!`,
-      text: `${product.title} has been ${action} your wishlist.`,
-      icon: isProductInWishlist ? "info" : "success",
-      confirmButtonText: "OK",
-      timer: 2000,
-      timerProgressBar: true,
-    });
+    setLoading(true); // Set loading to true when the action starts
+
+    // Simulate a delay of 1 second (1000ms)
+    setTimeout(() => {
+      toggleWishlist(product); // Perform the wishlist toggle action
+      setLoading(false); // Set loading to false after the action is completed
+
+      // Show the success/failure alert
+      Swal.fire({
+        title: `Wishlist Updated!`,
+        text: `Product has been ${isProductInWishlist ? "removed from" : "added to"} your wishlist.`,
+        icon: isProductInWishlist ? "info" : "success",
+        confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    }, 1000); // 1-second delay
   };
+
   const handleAddToCart = (product) => {
     const isProductInCart = cart.some((item) => item.id === product.id);
 
@@ -33,7 +43,7 @@ const ProductCard = ({ product }) => {
       // Show error alert
       Swal.fire({
         title: "Already in Cart",
-        text: `${product.title} is already in your cart.`,
+        text: `Product is already in your cart.`,
         icon: "error",
         confirmButtonText: "OK",
         timer: 2000,
@@ -44,7 +54,7 @@ const ProductCard = ({ product }) => {
       addToCart(product);
       Swal.fire({
         title: "Added to Cart!",
-        text: `${product.title} has been added to your cart.`,
+        text: `Product has been added to your cart.`,
         icon: "success",
         confirmButtonText: "OK",
         timer: 2000,
@@ -52,8 +62,6 @@ const ProductCard = ({ product }) => {
       });
     }
   };
-
-  
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-md p-2 relative group hover:shadow-lg hover:scale-[1.02] transition-transform duration-200 ease-in-out">
@@ -85,7 +93,7 @@ const ProductCard = ({ product }) => {
           <h4 className="font-bold text-base mt-4 text-[#EA5326]">
             {title?.slice(0, 50)}
           </h4>
-          <p className=" text-[#232323] text-base">${price}</p>
+          <p className="text-[#232323] text-base">${price}</p>
           <div className="flex items-center justify-between pb-2 pr-2">
             <div className="flex gap-1">
               <span className="text-yellow-500">★</span>
@@ -98,16 +106,19 @@ const ProductCard = ({ product }) => {
         </div>
       </Link>
 
-      {/* Heart Icon */}
+      {/* Heart Icon with loading state */}
       <button
         onClick={handleWishlistToggle}
-        className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-300 ${
-          isProductInWishlist
-            ? "bg-red-500 text-white"
-            : "bg-gray-200 text-black"
+        className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-300 hover:bg-red-500 hover:text-white ${
+          isProductInWishlist ? "bg-red-500 text-black" : "bg-gray-200 text-black"
         }`}
+        disabled={loading} // Disable button while loading
       >
-        <HeartIcon />
+        {loading ? (
+          <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div> // Loading spinner
+        ) : (
+           <WishlistIcon/>
+        )}
       </button>
 
       {/* Cart Button */}
@@ -115,7 +126,7 @@ const ProductCard = ({ product }) => {
         onClick={() => handleAddToCart(product)}
         className="absolute z-10 bottom-4 right-6 w-[45px] h-[45px] bg-[#DFE1E3] text-black flex items-center justify-center px-3 py-2 rounded-full transition-all duration-[900ms] hover:bg-[#EA5326] hover:text-white"
       >
-        <CartIcon />
+        <ProductCartIcon/>
       </button>
     </div>
   );

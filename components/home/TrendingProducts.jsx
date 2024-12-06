@@ -10,7 +10,7 @@ import { useWishlist } from "@/context/WishListContext";
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loadingWishlist, setLoadingWishlist] = useState(null);
 
   // Fetch products when the component mounts
   useEffect(() => {
@@ -34,27 +34,32 @@ export default function Products() {
 
   const { wishlist, toggleWishlist } = useWishlist();
 
-  const handleWishlistToggle = (product) => {
+  const handleWishlistToggle = async (product) => {
     const isProductInWishlist = wishlist.some((item) => item.id === product.id);
-    toggleWishlist(product);
-    const action = isProductInWishlist ? "removed from" : "added to";
+    setLoadingWishlist(product.id); // Set loading state to the product being processed
 
-    Swal.fire({
-      title: "Wishlist Updated!",
-      text: `${product.title} has been ${action} your wishlist.`,
-      icon: isProductInWishlist ? "info" : "success",
-      confirmButtonText: "OK",
-      timer: 2000,
-      timerProgressBar: true,
-    });
+    try {
+      // Simulate an API request or a time delay for adding/removing from wishlist
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating a 1-second delay
+
+      toggleWishlist(product);
+      const action = isProductInWishlist ? "removed from" : "added to";
+
+      Swal.fire({
+        title: "Wishlist Updated!",
+        text: `${product.title} has been ${action} your wishlist.`,
+        icon: isProductInWishlist ? "info" : "success",
+        confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    } finally {
+      setLoadingWishlist(null); // Reset loading state after the operation is done
+    }
   };
 
   if (loading) {
     return <div className="text-center py-12">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center py-12 text-red-500">{error}</div>;
   }
 
   const categories = [
@@ -130,7 +135,11 @@ export default function Products() {
                     : "bg-gray-200 text-black"
                 }`}
               >
-                <HeartIcon />
+                {loadingWishlist === product.id ? (
+                 <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <HeartIcon />
+                )}
               </button>
             </div>
           ))}
