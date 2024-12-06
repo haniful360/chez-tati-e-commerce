@@ -6,6 +6,7 @@ import CustomerFeedback from "@/components/products/CustomerFeedback";
 import category_banner from "@/public/icon/category_banner.svg";
 import Image from "next/image";
 import Loading from "@/components/loading";
+import PorductImage from "@/components/products/PorductImage";
 
 const ProductDynamicPage = ({ params }) => {
   const { slug: id } = React.use(params);
@@ -42,7 +43,7 @@ const ProductDynamicPage = ({ params }) => {
       <div className="max-w-[1280px] mx-auto p-6 mb-12">
         {/* Product Section */}
         <div className="flex flex-col lg:flex-row gap-6">
-          <PorductDetails product={product} />
+          <PorductImage product={product} />
           <ProductInfo product={product} />
         </div>
 
