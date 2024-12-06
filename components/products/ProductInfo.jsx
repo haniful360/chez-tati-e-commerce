@@ -80,7 +80,7 @@ const ProductInfo = ({ product }) => {
       </div>
       <hr className="my-5" />
       <p className="text-gray-600 mt-4">
-        <span className="font-semibold">Category</span>:{" "}
+        <span className="font-semibold">Category</span>:
         {product.product.category}
       </p>
       <p className="text-gray-600 mt-4">{product.product.description}</p>
@@ -111,7 +111,7 @@ const ProductInfo = ({ product }) => {
           </button>
         </Link>
         <button
-          onClick={() => handleAddToCart(product)}
+          onClick={() => handleAddToCart(product.product)}
           className="w-[45px] h-[45px] bg-[#DFE1E3] text-white flex items-center justify-center px-3 py-2 rounded-full"
         >
           <CartIcon />

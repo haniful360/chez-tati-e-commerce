@@ -19,7 +19,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // const [cartCount, setCartCount] = useState(0);
-  const {cart}  = useCart();
+  const { cart } = useCart();
   const [wishlistCount, setWishlistCount] = useState(1);
   const dropdownRef = useRef(null);
 
@@ -82,7 +82,6 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="hidden md:block">
-         
           <div className="flex mt-4 md:mt-0 w-full sm:w-[350px] md:w-[400px] lg:w-[498px] ">
             <div className="flex justify-center relative w-full">
               {/* Search Icon */}
@@ -150,7 +149,11 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link href="/about-us" className="hover:text-orange-500 font-semibold">
+
+          <Link
+            href="/about-us"
+            className="hover:text-orange-500 font-semibold"
+          >
             About Us
           </Link>
           <Link
