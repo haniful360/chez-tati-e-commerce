@@ -6,7 +6,8 @@ import "aos/dist/aos.css";
 import { Figtree } from "@next/font/google";
 import { useEffect } from "react";
 import AOS from "aos";
-import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+import { CartProvider } from "@/context/CartContext";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -28,13 +29,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={figtree.className}>
-        <Navbar />
-        {children}
-        <ProgressBar
-          height="2px"
-          color="#EA5326"
-        />
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          {children}
+          <ProgressBar height="2px" color="#EA5326" />
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

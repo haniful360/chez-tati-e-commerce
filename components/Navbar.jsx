@@ -12,18 +12,21 @@ import MenuIcon from "./svg/MenuIcon";
 import CrossIcon from "./svg/CrossIcon";
 
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+
+  // const [cartCount, setCartCount] = useState(0);
+  const {cart}  = useCart();
   const [wishlistCount, setWishlistCount] = useState(1);
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartCount(cartItems.length);
-  }, []);
+  // useEffect(() => {
+  //   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  //   setCartCount(cartItems.length);
+  // }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -177,9 +180,9 @@ const Navbar = () => {
             <Link href="/shopping-cart">
               <button className="relative text-gray-700 hover:text-orange-500">
                 <CartIcon />
-                {cartCount > 0 && (
+                {cart.length > 0 && (
                   <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {cartCount}
+                    {cart.length}
                   </span>
                 )}
               </button>

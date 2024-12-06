@@ -4,8 +4,11 @@ import CartIcon from "../svg/CartIcon";
 import Buynow from "../svg/Buynow";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 const ProductInfo = ({ product }) => {
+  const { cart, addToCart } = useCart();
   const router = useRouter();
 
   // State for quantity and price
@@ -31,74 +34,30 @@ const ProductInfo = ({ product }) => {
   };
 
   // Function to handle Add to Cart button click
-  const handleAddToCart = () => {
-    const productData = {
-      id: product.product.id,
-      name: product.product.title,
-      image: product.product.image, // Assuming the image URL is available in the product object
-      quantity,
-      price: totalPrice,
-    };
+  const handleAddToCart = (product) => {
+    const isProductInCart = cart.some((item) => item.id === product.id);
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingProductIndex = cart.findIndex(
-      (item) => item.id === productData.id
-    );
-
-    if (existingProductIndex !== -1) {
+    if (isProductInCart) {
+      // Show error alert
       Swal.fire({
-        title: "Error!",
-        text: "This product is already in your cart.",
+        title: "Already in Cart",
+        text: `${product.title} is already in your cart.`,
         icon: "error",
         confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
       });
     } else {
-      cart.push(productData);
-      localStorage.setItem("cart", JSON.stringify(cart));
-
+      // Add to cart and show success alert
+      addToCart(product);
       Swal.fire({
-        title: "Success!",
-        text: "Product added to your Shopping cart.",
+        title: "Added to Cart!",
+        text: `${product.title} has been added to your cart.`,
         icon: "success",
         confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
       });
-    }
-  };
-
-  // Function to handle Buy Now button click
-  const handleBuyNow = () => {
-    const productData = {
-      id: product.product.id,
-      name: product.product.title,
-      image: product.product.image, // Assuming the image URL is available in the product object
-      quantity,
-      price: totalPrice,
-    };
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingProductIndex = cart.findIndex(
-      (item) => item.id === productData.id
-    );
-
-    if (existingProductIndex !== -1) {
-      cart[existingProductIndex].quantity += quantity;
-    } else {
-      cart.push(productData);
-
-      Swal.fire({
-        title: "Success!",
-        text: "Product added to your Shopping cart. Redirecting to checkout...",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then(() => {
-        router.push("/shopping-cart");
-      });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    if (existingProductIndex !== -1) {
-      router.push("/shopping-cart");
     }
   };
 
@@ -114,9 +73,7 @@ const ProductInfo = ({ product }) => {
       </div>
       <div className="mt-4 flex items-center gap-4">
         <span className="text-gray-400 line-through">$48.00</span>
-        <span className="text-xl font-bold text-orange-500">
-          ${totalPrice}
-        </span>
+        <span className="text-xl font-bold text-orange-500">${totalPrice}</span>
         <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
           64% Off
         </span>
@@ -144,15 +101,17 @@ const ProductInfo = ({ product }) => {
             +
           </button>
         </div>
+        <Link href='/shopping-cart'>
+          <button
+            // onClick={handleBuyNow}
+            className="bg-[#EA5326] hover:bg-orange-500 text-white px-6 py-3 rounded-full transition flex items-center gap-2"
+          >
+            Buy Now
+            <Buynow />
+          </button>
+        </Link>
         <button
-          onClick={handleBuyNow}
-          className="bg-[#EA5326] hover:bg-orange-500 text-white px-6 py-3 rounded-full transition flex items-center gap-2"
-        >
-          Buy Now
-          <Buynow />
-        </button>
-        <button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(product)}
           className="w-[45px] h-[45px] bg-[#DFE1E3] text-white flex items-center justify-center px-3 py-2 rounded-full"
         >
           <CartIcon />

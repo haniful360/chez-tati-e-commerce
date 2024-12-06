@@ -98,9 +98,9 @@ export default function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((item) => (
+                  {cart.map((item, index) => (
                     <tr
-                      key={item.id}
+                      key={index}
                       className="border-b hover:bg-gray-50 transition ease-in duration-300"
                     >
                       <td className="py-4 px-2">
@@ -108,7 +108,7 @@ export default function Cart() {
                           {item.image ? (
                             <Image
                               src={item.image}
-                              alt={item.name}
+                              alt=''
                               className="w-16 h-16 rounded-md object-cover"
                               height={64}
                               width={64}

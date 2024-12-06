@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import SearchIcon from "../svg/SearchIcon";
+import PriceRangeSlider from "./PriceRangeSlider";
 
 const Sidebar = ({ onCategorySelect }) => {
   const [selected, setSelected] = useState("All Categories");
@@ -61,13 +62,7 @@ const Sidebar = ({ onCategorySelect }) => {
 
       {/* Price Range */}
       <div className="mb-6">
-        <h3 className="font-semibold mb-3">Price</h3>
-        <input
-          type="range"
-          className="w-full custom-range"
-          min="50"
-          max="1500"
-        />
+        {/* <PriceRangeSlider/> */}
         <p className="mt-2">Price: 50 – 1,500</p>
       </div>
 

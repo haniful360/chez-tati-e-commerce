@@ -1,11 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
 import CartIcon from "../svg/CartIcon";
-import HeartIcon from "../svg/HeartIcon";
-// import HeartIcon from "@/public/icon/Heart.svg";
+import { useCart } from "@/context/CartContext";
+import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, isOutOfStock, discount } = product;
+  const { cart, addToCart } = useCart();
+
+  const handleAddToCart = (product) => {
+    const isProductInCart = cart.some((item) => item.id === product.id);
+
+    if (isProductInCart) {
+      // Show error alert
+      Swal.fire({
+        title: "Already in Cart",
+        text: `${product.title} is already in your cart.`,
+        icon: "error",
+        confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    } else {
+      // Add to cart and show success alert
+      addToCart(product);
+      Swal.fire({
+        title: "Added to Cart!",
+        text: `${product.title} has been added to your cart.`,
+        icon: "success",
+        confirmButtonText: "OK",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    }
+  };
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-md p-2 relative group hover:shadow-lg hover:scale-[1.02] transition-transform duration-200 ease-in-out">
@@ -30,7 +58,7 @@ const ProductCard = ({ product }) => {
             alt=""
             width={344}
             height={344}
-            className="w-full h-[280px]  rounded-md"
+            className="w-full h-[280px] rounded-md"
           />
 
           {/* Product Details */}
@@ -69,7 +97,10 @@ const ProductCard = ({ product }) => {
       </button>
 
       {/* Cart Button */}
-      <a className="absolute z-10 bottom-4 right-6 w-[45px] h-[45px]  bg-[#DFE1E3] text-black flex items-center justify-center px-3 py-2 rounded-full transition-all duration-[900ms] hover:bg-[#EA5326] hover:text-white">
+      <button
+        onClick={() => handleAddToCart(product)}
+        className="absolute z-10 bottom-4 right-6 w-[45px] h-[45px] bg-[#DFE1E3] text-black flex items-center justify-center px-3 py-2 rounded-full transition-all duration-[900ms] hover:bg-[#EA5326] hover:text-white"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -86,7 +117,7 @@ const ProductCard = ({ product }) => {
           <circle cx="19" cy="21" r="1"></circle>
           <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
         </svg>
-      </a>
+      </button>
     </div>
   );
 };

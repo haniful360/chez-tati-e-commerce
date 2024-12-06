@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import Loading from "@/components/loading";
 import ProductCard from "@/components/products/ProductCard";
@@ -27,13 +27,18 @@ export default function ProductsPage() {
     // Filter products based on the selected category
     if (selectedCategory && selectedCategory !== "All Categories") {
       const filtered = products.filter(
-        (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()
+        (product) =>
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
       );
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts(products); // Show all products when "All Categories" is selected
     }
   }, [selectedCategory, products]);
+
+  const handleAddToCart = (id) => {
+    console.log(id);
+  };
 
   return (
     <div className="max-w-[1320px] mx-auto min-h-screen mt-40 pb-10">
@@ -50,7 +55,7 @@ export default function ProductsPage() {
         {/* Products Grid */}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} handleAddToCart={handleAddToCart} product={product} />
           ))}
         </div>
       </div>
