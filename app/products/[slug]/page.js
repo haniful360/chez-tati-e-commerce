@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import PorductDetails from "@/components/products/PorductDetails";
+import PorductDetails from "@/components/products/PorductImage";
 import ProductInfo from "@/components/products/ProductInfo";
 import CustomerFeedback from "@/components/products/CustomerFeedback";
 import category_banner from "@/public/icon/category_banner.svg";

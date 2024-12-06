@@ -1,16 +1,16 @@
 import Image from "next/image";
 import React from "react";
 
-const PorductDetails = ({product}) => {
+const PorductImage = ({product}) => {
   return (
     <div className="flex flex-col gap-4 lg:w-1/2">
-      <div className="border rounded-md overflow-hidden">
+      <div className="border rounded-md overflow-hidden p-2">
         <Image
           width={100}
           height={100}
           src={product.product.image}
           alt="Smart Freezer"
-          className="w-full h-96 object-cover"
+          className="w-full h-96 rounded-lg"
         />
       </div>
       <div className="flex flex-col gap-4">
@@ -42,4 +42,4 @@ const PorductDetails = ({product}) => {
   );
 };
 
-export default PorductDetails;
+export default PorductImage;

@@ -116,33 +116,33 @@ const Navbar = () => {
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
                 <Link
                   href="/products"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 rounded-md hover:bg-orange-500 hover:text-white transition-all"
                 >
                   All Categories
                 </Link>
                 <Link
                   href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
                 >
-                  Category 2
+                  Audio
                 </Link>
                 <Link
                   href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
                 >
-                  Category 3
+                  Gaming
                 </Link>
                 <Link
                   href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
                 >
-                  Category 4
+                  Mobile
                 </Link>
                 <Link
                   href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
                 >
-                  Category 5
+                  Television
                 </Link>
               </div>
             )}

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function PageBanner({ backgroundImage, breadcrumbs }) {
   return (
-    <div className="relative bg-gray-900 h-[120px] flex items-center">
+    <div className="relative bg-gray-900 h-[120px] flex items-center md:mt-[136px]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image

@@ -62,7 +62,7 @@ const ProductCard = ({ product }) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="lucide lucide-heart cursor-pointer"
+          className="lucide lucide-heart cursor-pointer"
         >
           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
         </svg>
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="lucide lucide-shopping-cart"
+          className="lucide lucide-shopping-cart"
         >
           <circle cx="8" cy="21" r="1"></circle>
           <circle cx="19" cy="21" r="1"></circle>

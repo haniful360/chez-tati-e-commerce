@@ -20,7 +20,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <PageBanner backgroundImage={signIn_banner} breadcrumbs={breadcrumbs} />
+      <PageBanner backgroundImage={signIn_banner} breadcrumbs={breadcrumbs}/>
       <div className="flex items-center justify-center bg-gray-100 py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
