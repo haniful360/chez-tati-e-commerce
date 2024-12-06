@@ -1,24 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import signIn_banner from "@/public/icon/sign-in.svg";
+import signIn_banner from "@/public/images/banner-section.png";
 import google from "@/public/icon/google.svg";
 import eyeIcon from "@/public/icon/eye.svg"; // Add your eye icon here
 import eyeoff from "@/public/icon/eye-off.svg"; // Add your eye-off icon here
 import Image from "next/image";
 import Link from "next/link";
+import PageBanner from "@/components/PageBanner";
+import HomeIcon from "@/components/svg/HomeIcon";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const breadcrumbs = [
+    { label: <HomeIcon/>, href: "/" },
+    // { label: "signIn", href: "/sign-in" },
+    { label: "SignIn" },
+  ];
+
   return (
     <div>
-      <Image
-        className="w-full mt-[150px]"
-        src={signIn_banner}
-        width={1500}
-        height={120}
-        alt=""
-      />
+      <PageBanner backgroundImage={signIn_banner} breadcrumbs={breadcrumbs} />
       <div className="flex items-center justify-center bg-gray-100 py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
@@ -63,15 +65,15 @@ const SignIn = () => {
 
             <div className="flex items-center justify-between  mb-4">
               <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="terms"
-                className="h-4 w-4 border border-gray-300 rounded"
-                required
-              />
-              <label htmlFor="terms" className="ml-2  text-sm">
-                Accept all
-              </label>
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="h-4 w-4 border border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="terms" className="ml-2  text-sm">
+                  Accept all
+                </label>
               </div>
 
               <div>

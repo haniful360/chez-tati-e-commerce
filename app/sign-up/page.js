@@ -1,26 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import signIn_banner from "@/public/icon/sign-in.svg";
+import signUp_banner from "@/public/images/banner-section.png";
 import google from "@/public/icon/google.svg";
 import eyeIcon from "@/public/icon/eye.svg"; // Add your eye icon here
 import eyeoff from "@/public/icon/eye-off.svg"; // Add your eye-off icon here
 import Image from "next/image";
 import Link from "next/link";
+import PageBanner from "@/components/PageBanner";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
 
   return (
     <div className="">
-      <Image
-        className="w-full mt-[150px]"
-        src={signIn_banner}
-        width={1500}
-        height={120}
-        alt=""
-      />
-      <div className='flex items-center justify-center bg-gray-100 py-12' >
+      <PageBanner />
+      <div className="flex items-center justify-center bg-gray-100 py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">
             Create Account
@@ -99,7 +95,10 @@ const SignUp = () => {
                 required
               />
               <label htmlFor="terms" className="ml-2 text-sm">
-                Accept all <Link href="#" className="text-blue-500">terms & Conditions</Link>
+                Accept all{" "}
+                <Link href="#" className="text-blue-500">
+                  terms & Conditions
+                </Link>
               </label>
             </div>
 
