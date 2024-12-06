@@ -1,50 +1,95 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeartIcon from "../svg/HeartIcon";
+import Swal from "sweetalert2";
+import { useWishlist } from "@/context/WishListContext";
 
-// Fetch products from the API
-async function fetchProducts() {
-  const res = await fetch("https://fakestoreapi.in/api/products", {
-    next: { revalidate: 60 }, // Revalidate data every 60 seconds
-  });
+export default function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
+  // Fetch products when the component mounts
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://fakestoreapi.in/api/products");
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await res.json();
+        setProducts(data.products.slice(0, 8)); // Limit to first 8 products
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const { wishlist, toggleWishlist } = useWishlist();
+
+  const handleWishlistToggle = (product) => {
+    const isProductInWishlist = wishlist.some((item) => item.id === product.id);
+    toggleWishlist(product);
+    const action = isProductInWishlist ? "removed from" : "added to";
+
+    Swal.fire({
+      title: "Wishlist Updated!",
+      text: `${product.title} has been ${action} your wishlist.`,
+      icon: isProductInWishlist ? "info" : "success",
+      confirmButtonText: "OK",
+      timer: 2000,
+      timerProgressBar: true,
+    });
+  };
+
+  if (loading) {
+    return <div className="text-center py-12">Loading...</div>;
   }
 
-  return res.json();
-}
+  if (error) {
+    return <div className="text-center py-12 text-red-500">{error}</div>;
+  }
 
-export default async function Products() {
-  const products = await fetchProducts(); // Fetch the data server-side
+  const categories = [
+    { label: "New Arrival", className: "border-gray-300 hover:bg-gray-200" },
+    { label: "Discount", className: "border-gray-300 hover:bg-gray-200" },
+    { label: "Popular", className: "border-gray-300 hover:bg-gray-200" },
+    {
+      label: "SHOES",
+      className: "border-red-500 bg-red-500 text-white hover:bg-red-600",
+    },
+  ];
 
   return (
     <section className="bg-gray-100 py-12">
       <div className="max-w-[1320px] mx-auto px-4">
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
+        <header className="flex justify-between items-center mb-6">
           <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
             Products
           </h1>
-          <div className="flex justify-end flex-wrap gap-4">
-            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition sm:w-auto">
-              New Arrival
-            </button>
-            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition sm:w-auto">
-              Discount
-            </button>
-            <button className="px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-full hover:bg-gray-200 transition sm:w-auto">
-              Popular
-            </button>
-            <button className="px-4 py-2 text-sm sm:text-base border border-red-500 text-white bg-red-500 rounded-full hover:bg-red-600 transition sm:w-auto">
-              SHOES
-            </button>
+          <div className="flex gap-4 flex-wrap">
+            {categories.map(({ label, className }) => (
+              <button
+                key={label}
+                className={`px-4 py-2 text-sm sm:text-base border rounded-full transition sm:w-auto ${className}`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
-        </div>
+        </header>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {products.products.slice(0, 8).map((product, index) => (
+          {products.map((product, index) => (
             <div
               key={product.id}
               className="relative rounded-lg overflow-hidden"
@@ -52,44 +97,40 @@ export default async function Products() {
               data-aos-delay={`${index * 100}`}
             >
               {/* Product Link */}
-              <Link href={`/products/${product.id}`}>
+              <Link href={`/products/${product.id}`} className="block">
                 <div>
                   {/* Product Image */}
                   <div className="relative">
                     <Image
                       src={product.image}
-                      alt=""
+                      alt={product.title}
                       width={500}
                       height={286}
                       className="w-full h-auto rounded-[20px]"
+                      priority={index < 2} // Prioritize first few images for faster load
                     />
                   </div>
 
                   {/* Product Details */}
                   <div className="p-4">
-                    <h2 className="text-lg font-semibold text-gray-800">
-                      {product.title.slice(0, 50).concat("...")}
+                    <h2 className="text-lg font-semibold text-gray-800 truncate">
+                      {product.title}
                     </h2>
                     <p className="text-gray-600 mt-1">${product.price}</p>
                   </div>
                 </div>
               </Link>
 
-              {/* Button Outside of Link */}
-              <button className="absolute top-4 right-4 bg-[#232323] text-white p-2 rounded-full shadow hover:bg-gray-700 transition">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.88974 16.8662C9.39622 16.4286 8.83843 15.9733 8.24851 15.489H8.24086C6.16349 13.7904 3.80914 11.8683 2.76931 9.56523C2.42769 8.83201 2.24664 8.03427 2.23829 7.22541C2.23601 6.11556 2.68114 5.05163 3.47309 4.27407C4.26505 3.49652 5.33697 3.07098 6.44659 3.09363C7.34994 3.09506 8.23384 3.35614 8.99299 3.84577C9.32657 4.06228 9.62839 4.32418 9.88974 4.62392C10.1526 4.32536 10.4545 4.06361 10.7873 3.84577C11.5461 3.35604 12.4298 3.09495 13.3329 3.09363C14.4425 3.07098 15.5144 3.49652 16.3064 4.27407C17.0983 5.05163 17.5435 6.11556 17.5412 7.22541C17.5334 8.03556 17.3523 8.83466 17.0102 9.56905C15.9703 11.8721 13.6168 13.7934 11.5394 15.489L11.5317 15.4951C10.9411 15.9764 10.384 16.4316 9.89051 16.8724L9.88974 16.8662ZM6.44659 4.62392C5.73387 4.615 5.04643 4.88778 4.53373 5.38295C4.03974 5.86817 3.76366 6.53299 3.76852 7.22541C3.77725 7.81496 3.91077 8.39597 4.16034 8.93016C4.65119 9.92385 5.3135 10.8232 6.11682 11.5867C6.87507 12.3519 7.74734 13.0925 8.50177 13.7154C8.71066 13.8875 8.92337 14.0612 9.13608 14.2349L9.26998 14.3443C9.47427 14.5111 9.68545 14.684 9.88974 14.8539L9.89969 14.8447L9.90428 14.8409H9.90887L9.91576 14.8355H9.91958H9.92341L9.93718 14.8241L9.96855 14.7988L9.97391 14.7942L9.98233 14.7881H9.98692L9.9938 14.782L10.5019 14.365L10.635 14.2556C10.85 14.0803 11.0627 13.9067 11.2716 13.7345C12.026 13.1117 12.8991 12.3718 13.6573 11.6028C14.4607 10.8396 15.1231 9.94054 15.6138 8.94699C15.8679 8.40817 16.0033 7.82108 16.0109 7.22541C16.0141 6.53513 15.7381 5.87286 15.2458 5.38907C14.734 4.89166 14.0465 4.61664 13.3329 4.62392C12.4621 4.61652 11.6296 4.98153 11.0451 5.62703L9.88974 6.95838L8.73437 5.62703C8.14985 4.98153 7.31739 4.61652 6.44659 4.62392Z"
-                    fill="#F8FAFC"
-                  />
-                </svg>
-                {/* <HeartIcon/> */}
+              {/* Wishlist Button */}
+              <button
+                onClick={() => handleWishlistToggle(product)}
+                className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-300 ${
+                  wishlist.some((item) => item.id === product.id)
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                <HeartIcon />
               </button>
             </div>
           ))}

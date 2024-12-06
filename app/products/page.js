@@ -36,10 +36,7 @@ export default function ProductsPage() {
     }
   }, [selectedCategory, products]);
 
-  const handleAddToCart = (id) => {
-    console.log(id);
-  };
-
+ 
   return (
     <div className="max-w-[1320px] mx-auto min-h-screen mt-40 pb-10">
       <div className="flex justify-end">
@@ -55,7 +52,7 @@ export default function ProductsPage() {
         {/* Products Grid */}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} handleAddToCart={handleAddToCart} product={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

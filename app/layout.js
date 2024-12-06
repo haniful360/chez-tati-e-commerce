@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishListContext";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -30,10 +31,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={figtree.className}>
         <CartProvider>
-          <Navbar />
-          {children}
-          <ProgressBar height="2px" color="#EA5326" />
-          <Footer />
+          <WishlistProvider>
+            <Navbar />
+            {children}
+            <ProgressBar height="2px" color="#EA5326" />
+            <Footer />
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>

@@ -13,20 +13,15 @@ import CrossIcon from "./svg/CrossIcon";
 
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishListContext";
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  // const [cartCount, setCartCount] = useState(0);
   const { cart } = useCart();
-  const [wishlistCount, setWishlistCount] = useState(1);
+  const { wishlist } = useWishlist();
   const dropdownRef = useRef(null);
-
-  // useEffect(() => {
-  //   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  //   setCartCount(cartItems.length);
-  // }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -109,7 +104,7 @@ const Navbar = () => {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
-              className="hover:text-orange-500 font-semibold flex items-center gap-[1px]"
+              className="hover:text-orange-600 lg:text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-[1px]"
             >
               All Category
               <DownArrow />
@@ -118,7 +113,7 @@ const Navbar = () => {
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
                 <Link
                   href="/products"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 mb-1 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200  rounded-md hover:bg-orange-500 hover:text-white transition-all"
                 >
                   All Categories
                 </Link>
@@ -152,13 +147,13 @@ const Navbar = () => {
 
           <Link
             href="/about-us"
-            className="hover:text-orange-500 font-semibold"
+            className="hover:text-orange-500 text-[#4E4E4E] font-semibold lg:text-[18px]"
           >
             About Us
           </Link>
           <Link
             href="/contact-us"
-            className="hover:text-orange-500 font-semibold"
+            className="hover:text-orange-500 text-[#4E4E4E] font-semibold lg:text-[18px]"
           >
             Contact Us
           </Link>
@@ -171,9 +166,9 @@ const Navbar = () => {
             <Link href="/wishlist-products">
               <button className="relative text-gray-700 hover:text-orange-500">
                 <HeartIcon />
-                {wishlistCount > 0 && (
+                {wishlist.length > 0 && (
                   <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {wishlistCount}
+                    {wishlist.length}
                   </span>
                 )}
               </button>
@@ -208,7 +203,7 @@ const Navbar = () => {
         <div className="px-4 py-2">
           <div className="space-y-3">
             <div className="relative group">
-              <button className="hover:text-orange-500 flex items-center gap-[1px]">
+              <button className=" hover:text-orange-500 flex items-center gap-[1px]">
                 All Category
                 <DownArrow />
               </button>
