@@ -7,12 +7,12 @@ import { useState } from "react"; // Import useState for loading state
 import ProductCartIcon from "../svg/ProductCartIcon";
 import WishlistIcon from "../svg/WishlistIcon";
 
+
 const ProductCard = ({ product }) => {
   const { title, price, image, isOutOfStock, discount } = product;
   const { cart, addToCart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
   const [loading, setLoading] = useState(false); // State to manage loading
- 
 
   const isProductInWishlist = wishlist.some((item) => item.id === product.id);
 
@@ -27,7 +27,9 @@ const ProductCard = ({ product }) => {
       // Show the success/failure alert
       Swal.fire({
         title: `Wishlist Updated!`,
-        text: `Product has been ${isProductInWishlist ? "removed from" : "added to"} your wishlist.`,
+        text: `Product has been ${
+          isProductInWishlist ? "removed from" : "added to"
+        } your wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
         confirmButtonText: "OK",
         timer: 2000,
@@ -91,18 +93,19 @@ const ProductCard = ({ product }) => {
 
           {/* Product Details */}
           <h4 className="font-bold text-base mt-4 text-[#EA5326]">
-            {title?.slice(0, 50)}
+            {title?.slice(0, 50).concat('...')}
           </h4>
           <p className="text-[#232323] text-base">${price}</p>
           <div className="flex items-center justify-between pb-2 pr-2">
             <div className="flex gap-1">
-              <span className="text-yellow-500">★</span>
-              <span className="text-yellow-500">★</span>
-              <span className="text-yellow-500">★</span>
-              <span className="text-yellow-500">★</span>
-              <span className="text-yellow-500">★</span>
+              <span className="text-orange-500">★</span>
+              <span className="text-orange-500">★</span>
+              <span className="text-orange-500">★</span>
+              <span className="text-orange-500">★</span>
+              <span className="text-orange-500">★</span>
             </div>
           </div>
+      
         </div>
       </Link>
 
@@ -110,14 +113,16 @@ const ProductCard = ({ product }) => {
       <button
         onClick={handleWishlistToggle}
         className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-300 hover:bg-red-500 hover:text-white ${
-          isProductInWishlist ? "bg-red-500 text-black" : "bg-gray-200 text-black"
+          isProductInWishlist
+            ? "bg-red-500 text-black"
+            : "bg-gray-200 text-black"
         }`}
         disabled={loading} // Disable button while loading
       >
         {loading ? (
           <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div> // Loading spinner
         ) : (
-           <WishlistIcon/>
+          <WishlistIcon />
         )}
       </button>
 
@@ -126,7 +131,7 @@ const ProductCard = ({ product }) => {
         onClick={() => handleAddToCart(product)}
         className="absolute z-10 bottom-4 right-6 w-[45px] h-[45px] bg-[#DFE1E3] text-black flex items-center justify-center px-3 py-2 rounded-full transition-all duration-[900ms] hover:bg-[#EA5326] hover:text-white"
       >
-        <ProductCartIcon/>
+        <ProductCartIcon />
       </button>
     </div>
   );
