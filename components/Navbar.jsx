@@ -15,13 +15,20 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishListContext";
 
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
   const { wishlist } = useWishlist();
   const dropdownRef = useRef(null);
+
+  const [storedUsers, setStoredUsers] = useState(null);
+  // console.log(storedUsers.email);
+
+  useEffect(() => {
+    const user = localStorage.getItem("users");
+    setStoredUsers(user);
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -111,38 +118,37 @@ const Navbar = () => {
             </button>
             {isOpen && (
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
-              <Link
-                href="/products?category=All Categories"
-                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
-              >
-                All Categories
-              </Link>
-              <Link
-                href="/products?category=Audio"
-                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Audio
-              </Link>
-              <Link
-                href="/products?category=Gaming"
-                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Gaming
-              </Link>
-              <Link
-                href="/products?category=Mobile"
-                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Mobile
-              </Link>
-              <Link
-                href="/products?category=tv"
-                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Television
-              </Link>
-            </div>
-            
+                <Link
+                  href="/products?category=All Categories"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  All Categories
+                </Link>
+                <Link
+                  href="/products?category=Audio"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Audio
+                </Link>
+                <Link
+                  href="/products?category=Gaming"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Gaming
+                </Link>
+                <Link
+                  href="/products?category=Mobile"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Mobile
+                </Link>
+                <Link
+                  href="/products?category=tv"
+                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+                >
+                  Television
+                </Link>
+              </div>
             )}
           </div>
 
@@ -187,11 +193,19 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-          <Link href="/sign-up">
-            <button className="text-gray-700 hover:text-orange-500">
-              <UserIcon />
-            </button>
-          </Link>
+          {storedUsers ? (
+            <Link href="/user/profile">
+              <button className="text-gray-700 hover:text-orange-500">
+                <UserIcon />
+              </button>
+            </Link>
+          ) : (
+            <Link href="/sign-in">
+              <button className="text-gray-700 hover:text-orange-500">
+                <UserIcon />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
 

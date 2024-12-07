@@ -49,8 +49,7 @@ const SignIn = () => {
       );
   
       if (user) {
-        // If the credentials match, redirect to the dashboard
-        router.push("/dashboard");
+        router.push("/user/profile");
       } else {
         setError("Invalid email or password.");
       }
@@ -73,7 +72,7 @@ const SignIn = () => {
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
-          {error && <div className="mb-4 text-red-500">{error}</div>} {/* Display error message */}
+          {error && <div className="mb-4 text-red-500">{error}</div>}
 
           <form onSubmit={handleSubmit}>
             {/* Email Input */}
@@ -164,7 +163,7 @@ const SignIn = () => {
           {/* Sign In Link */}
           <div className="text-center mt-6">
             <p className="text-sm md:text-xl">
-              Don't have an account?{" "}
+              Don't have an account?
               <Link
                 href="/sign-up"
                 className="text-orange-500 hover:underline font-semibold"
