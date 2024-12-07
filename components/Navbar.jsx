@@ -17,13 +17,12 @@ import { useWishlist } from "@/context/WishListContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { cart } = useCart();
   const { wishlist } = useWishlist();
   const dropdownRef = useRef(null);
 
   const [storedUsers, setStoredUsers] = useState(null);
-  // console.log(storedUsers.email);
 
   useEffect(() => {
     const user = localStorage.getItem("users");
@@ -31,12 +30,12 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleClickOutside = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-      setIsOpen(false);
+      setIsDropdownOpen(false);
     }
   };
 
@@ -77,13 +76,13 @@ const Navbar = () => {
         {/* Mobile Hamburger Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-gray-700 hover:text-orange-500"
+          className="lg:hidden text-gray-700 hover:text-orange-500 z-50"
         >
           {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
         </button>
 
         {/* Search Bar */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <div className="flex mt-4 md:mt-0 w-full sm:w-[350px] md:w-[400px] lg:w-[498px] ">
             <div className="flex justify-center relative w-full">
               {/* Search Icon */}
@@ -113,10 +112,10 @@ const Navbar = () => {
               onClick={toggleDropdown}
               className="hover:text-orange-600 lg:text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-[1px]"
             >
-              All Category
+              All Categories
               <DownArrow />
             </button>
-            {isOpen && (
+            {isDropdownOpen && (
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
                 <Link
                   href="/products?category=All Categories"
@@ -210,65 +209,136 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed top-0 left-0 w-full h-[250px] bg-gray-50 shadow-md transform ${
-          isMenuOpen ? "translate-y-24" : "-translate-y-full"
-        } transition-transform duration-300`}
-      >
-        <div className="px-4 py-2">
-          <div className="space-y-3">
-            <div className="relative group">
-              <button className=" hover:text-orange-500 flex items-center gap-[1px]">
-                All Category
-                <DownArrow />
-              </button>
-              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity">
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-                >
-                  Category 1
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-                >
-                  Category 2
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-                >
-                  Category 3
-                </Link>
-              </div>
+      <div>
+  {/* Overlay */}
+  {isMenuOpen && (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 z-40"
+      onClick={toggleMenu}
+    ></div>
+  )}
+
+  {/* Sliding Menu */}
+  <div
+    className={`lg:hidden fixed top-0 right-0 h-full w-[50%] bg-green-500 shadow-md z-50 transform ${
+      isMenuOpen ? "translate-x-0" : "translate-x-full"
+    } transition-transform duration-300`}
+  >
+    {/* Close Icon */}
+    <div className="flex justify-end p-4">
+      <button onClick={toggleMenu} className="text-white mt-4 pr-4 hover:text-orange-500">
+        <CrossIcon />
+      </button>
+    </div>
+
+    {/* Menu Content */}
+    <div className="px-4 py-4">
+      <div className="space-y-4">
+        {/* Dropdown Menu */}
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={toggleDropdown}
+            className="hover:text-orange-600 text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-2"
+          >
+            All Categories
+            <DownArrow />
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 z-50">
+              <Link
+                href="/products?category=All Categories"
+                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+              >
+                All Categories
+              </Link>
+              <Link
+                href="/products?category=Audio"
+                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Audio
+              </Link>
+              <Link
+                href="/products?category=Gaming"
+                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Gaming
+              </Link>
+              <Link
+                href="/products?category=Mobile"
+                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Mobile
+              </Link>
+              <Link
+                href="/products?category=tv"
+                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Television
+              </Link>
             </div>
-            <Link
-              href="#"
-              className="block py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-            >
-              About Us
-            </Link>
-            <Link
-              href="#"
-              className="block py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white"
-            >
-              Contact Us
-            </Link>
-          </div>
-          <div className="lg:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
-            <button className="text-gray-700 hover:text-orange-500">
-              <HeartIcon />
-            </button>
-            <button className="text-gray-700 hover:text-orange-500">
-              <CartIcon />
-            </button>
+          )}
+        </div>
+
+        {/* Links */}
+        <Link
+          href="/about-us"
+          className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
+        >
+          About Us
+        </Link>
+        <Link
+          href="/contact-us"
+          className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
+        >
+          Contact Us
+        </Link>
+      </div>
+
+      {/* Icons */}
+      <div className="flex items-center gap-4 mt-8">
+        {/* Wishlist Icon with Badge */}
+        <Link href="/wishlist-products">
+          <button className="relative text-gray-700 hover:text-orange-500">
+            <HeartIcon />
+            {wishlist.length > 0 && (
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {wishlist.length}
+              </span>
+            )}
+          </button>
+        </Link>
+
+        {/* Cart Icon with Badge */}
+        <Link href="/shopping-cart">
+          <button className="relative text-gray-700 hover:text-orange-500">
+            <CartIcon />
+            {cart.length > 0 && (
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </button>
+        </Link>
+
+        {/* User Icon */}
+        {storedUsers ? (
+          <Link href="/user/profile">
             <button className="text-gray-700 hover:text-orange-500">
               <UserIcon />
             </button>
-          </div>
-        </div>
+          </Link>
+        ) : (
+          <Link href="/sign-in">
+            <button className="text-gray-700 hover:text-orange-500">
+              <UserIcon />
+            </button>
+          </Link>
+        )}
       </div>
+    </div>
+  </div>
+</div>
+
     </nav>
   );
 };
