@@ -1,18 +1,17 @@
 "use client";
 import { useState } from "react";
 import SearchIcon from "../svg/SearchIcon";
-import PriceRangeSlider from "./PriceRangeSlider";
 
 const Sidebar = ({ onCategorySelect }) => {
   const [selected, setSelected] = useState("All Categories");
 
   // Categories with counts
   const items = [
-    { label: "All Categories", count: 470 },
-    { label: "audio", count: 120 },
-    { label: "mobile", count: 200 },
-    { label: "gaming", count: 85 },
-    { label: "tv", count: 65 },
+    { label: "All Categories", count: 50 },
+    { label: "Audio", count: 120 },
+    { label: "Mobile", count: 200 },
+    { label: "Gaming", count: 85 },
+    { label: "Television", count: 65 },
   ];
 
   const handleCategoryChange = (category) => {

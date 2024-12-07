@@ -111,37 +111,38 @@ const Navbar = () => {
             </button>
             {isOpen && (
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
-                <Link
-                  href="/products"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200  rounded-md hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  All Categories
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  Audio
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  Gaming
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  Mobile
-                </Link>
-                <Link
-                  href="#"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  Television
-                </Link>
-              </div>
+              <Link
+                href="/products?category=All Categories"
+                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+              >
+                All Categories
+              </Link>
+              <Link
+                href="/products?category=Audio"
+                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Audio
+              </Link>
+              <Link
+                href="/products?category=Gaming"
+                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Gaming
+              </Link>
+              <Link
+                href="/products?category=Mobile"
+                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Mobile
+              </Link>
+              <Link
+                href="/products?category=tv"
+                className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded hover:bg-orange-500 hover:text-white transition-all"
+              >
+                Television
+              </Link>
+            </div>
+            
             )}
           </div>
 
