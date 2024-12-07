@@ -1,16 +1,18 @@
 'use client'
 import withAuth from "@/components/protectedRoute/withAuth";
 import Image from "next/image";
+import avater from "@/public/images/user.png";
 
 
 const UserProfile = () => {
   return (
+    
     <div className="lg:col-span-3 space-y-6">
       {/* Profile Info */}
       <div className="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="text-center">
           <Image
-            src="/profile.jpg"
+            src={avater}
             alt="Profile"
             width={100}
             height={100}

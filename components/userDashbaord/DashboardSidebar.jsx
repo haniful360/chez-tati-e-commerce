@@ -21,7 +21,7 @@ const DashboardSidebar = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-4">
+    <div className="bg-white rounded-lg shadow p-4 h-[440px]">
       <nav>
         <ul className="space-y-4">
           <li
@@ -32,7 +32,7 @@ const DashboardSidebar = () => {
             }`}
             onClick={() => setSelected("dashboard")}
           >
-            <Link href="/dashboard">
+            <Link href="/user/profile">
               <div className="flex items-center gap-2">
                 <DashboardIcon className="mr-3" />
                 Dashboard
@@ -47,7 +47,7 @@ const DashboardSidebar = () => {
             }`}
             onClick={() => setSelected("order-history")}
           >
-            <Link href="/order-history">
+            <Link href="/user/order-history">
               <div className="flex items-center gap-2">
                 <OrderIcon className="mr-3" />
                 Order History
@@ -62,7 +62,7 @@ const DashboardSidebar = () => {
             }`}
             onClick={() => setSelected("wishlist")}
           >
-            <Link href="/wishlist">
+            <Link href="/wishlist-products">
               <div className="flex items-center gap-2">
                 <UserHeartIcon className="mr-3" />
                 Wishlist
@@ -92,7 +92,7 @@ const DashboardSidebar = () => {
             }`}
             onClick={() => setSelected("settings")}
           >
-            <Link href="/settings">
+            <Link href="/user/account-setting">
               <div className="flex items-center gap-2">
                 <SettingIcon className="mr-3" />
                 Settings
