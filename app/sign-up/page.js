@@ -12,12 +12,45 @@ import HomeIcon from "@/components/svg/HomeIcon";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const breadcrumbs = [
-    { label: <HomeIcon/>, href: "/" },
-    // { label: "signIn", href: "/sign-in" },
-    { label: "SingUp" },
-  ];
+  const breadcrumbs = [{ label: <HomeIcon />, href: "/" }, { label: "SignUp" }];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validation
+    if (!email || !password || !confirmPassword) {
+      setError("All fields are required.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    // Check if the email is already in use
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    if (existingUsers.find((user) => user.email === email)) {
+      setError("Email is already registered.");
+      return;
+    }
+
+    // Save new user data to localStorage
+    existingUsers.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(existingUsers));
+
+    setSuccess(true);
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setError("");
+  };
 
   return (
     <div className="">
@@ -28,7 +61,16 @@ const SignUp = () => {
             Create Account
           </h2>
 
-          <form>
+          {error && (
+            <div className="text-red-500 text-center mb-4">{error}</div>
+          )}
+          {success && (
+            <div className="text-green-500 text-center mb-4">
+              Registration Successful!
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
             {/* Email Input */}
             <div className="mb-4">
               <input
@@ -36,6 +78,8 @@ const SignUp = () => {
                 id="email"
                 className="w-full border border-gray-300 rounded-[8.73px] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -47,6 +91,8 @@ const SignUp = () => {
                 id="password"
                 className="w-full border border-gray-300 rounded-[8.73px] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               {showPassword ? (
@@ -73,6 +119,8 @@ const SignUp = () => {
                 id="confirmPassword"
                 className="w-full border border-gray-300 rounded-[8.73px] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               {showConfirmPassword ? (
@@ -109,13 +157,16 @@ const SignUp = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="w-full  py-2 bg-[#EA5326] text-white font-bold rounded-[62px] hover:bg-orange-600 transition-colors">
+            <button
+              type="submit"
+              className="w-full py-2 bg-[#EA5326] text-white font-bold rounded-[62px] hover:bg-orange-600 transition-colors"
+            >
               Create Account
             </button>
 
             {/* Google Button */}
             <div className="text-center mt-4">
-              <button className="flex items-center justify-around w-full  py-2 border border-gray-300 rounded-[8.73px]">
+              <button className="flex items-center justify-around w-full py-2 border border-gray-300 rounded-[8.73px]">
                 <Image
                   src={google}
                   alt="Google"
