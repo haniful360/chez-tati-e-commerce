@@ -17,7 +17,7 @@ import { useWishlist } from "@/context/WishListContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
   const { wishlist } = useWishlist();
   const dropdownRef = useRef(null);
@@ -30,12 +30,12 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsOpen(!isOpen);
   };
 
   const handleClickOutside = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-      setIsDropdownOpen(false);
+      setIsOpen(false);
     }
   };
 
@@ -51,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed z-50 w-full top-0 left-0 right-0 bg-[#F8FAFC] h-[140px] border-b-2 border-[#DFE1E3]">
+    <nav className="fixed z-50 w-full top-0 left-0 right-0 bg-[#F8FAFC] h-[80px] md:h-[140px] border-b-2 border-[#DFE1E3]">
       <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -76,13 +76,13 @@ const Navbar = () => {
         {/* Mobile Hamburger Menu Button */}
         <button
           onClick={toggleMenu}
-          className="lg:hidden text-gray-700 hover:text-orange-500 z-50"
+          className="2xl:hidden text-gray-700 hover:text-orange-500"
         >
           {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
         </button>
 
         {/* Search Bar */}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <div className="flex mt-4 md:mt-0 w-full sm:w-[350px] md:w-[400px] lg:w-[498px] ">
             <div className="flex justify-center relative w-full">
               {/* Search Icon */}
@@ -106,16 +106,16 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex space-x-6 mt-4 md:mt-0 font-figtree text-[#232323]">
+        <div className="hidden xl:flex space-x-6 mt-4 md:mt-0 font-figtree text-[#232323]">
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
               className="hover:text-orange-600 lg:text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-[1px]"
             >
-              All Categories
+              All Category
               <DownArrow />
             </button>
-            {isDropdownOpen && (
+            {isOpen && (
               <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
                 <Link
                   href="/products?category=All Categories"
@@ -166,7 +166,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Icons */}
-        <div className="hidden lg:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
+        <div className="hidden xl:flex items-center space-x-4 md:space-x-6 mt-8 md:mt-0">
           <div className="flex items-center gap-4">
             {/* Wishlist Icon with Badge */}
             <Link href="/wishlist-products">
@@ -210,135 +210,132 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div>
-  {/* Overlay */}
-  {isMenuOpen && (
-    <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-40"
-      onClick={toggleMenu}
-    ></div>
-  )}
+        {/* Overlay */}
+        {isMenuOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={toggleMenu}
+          ></div>
+        )}
 
-  {/* Sliding Menu */}
-  <div
-    className={`lg:hidden fixed top-0 right-0 h-full w-[50%] bg-green-500 shadow-md z-50 transform ${
-      isMenuOpen ? "translate-x-0" : "translate-x-full"
-    } transition-transform duration-300`}
-  >
-    {/* Close Icon */}
-    <div className="flex justify-end p-4">
-      <button onClick={toggleMenu} className="text-white mt-4 pr-4 hover:text-orange-500">
-        <CrossIcon />
-      </button>
-    </div>
+        {/* Sliding Menu */}
+        <div
+          className={`xl:hidden fixed top-0 right-0 h-full w-[75%] md:w-[35%] bg-white shadow-md z-50 transform ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300`}
+        >
+          {/* Close Icon */}
+          <div className="flex justify-end p-4">
+            <button
+              onClick={toggleMenu}
+              className="text-black mt-4 pr-4 hover:text-orange-500"
+            >
+              <CrossIcon />
+            </button>
+          </div>
 
-    {/* Menu Content */}
-    <div className="px-4 py-4">
-      <div className="space-y-4">
-        {/* Dropdown Menu */}
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={toggleDropdown}
-            className="hover:text-orange-600 text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-2"
-          >
-            All Categories
-            <DownArrow />
-          </button>
-          {isDropdownOpen && (
-            <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 z-50">
+          {/* Menu Content */}
+          <div className="px-4 py-4">
+            <div className="space-y-4">
+              {/* Dropdown Menu */}
+              <div className="relative group">
+                <button className="flex items-center hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]">
+                  All Categories
+                  <DownArrow />
+                </button>
+                <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity z-50">
+                  <Link
+                    href="/products?category=All Categories"
+                    className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                  >
+                    All Categories
+                  </Link>
+                  <Link
+                    href="/products?category=Audio"
+                    className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                  >
+                    Audio
+                  </Link>
+                  <Link
+                    href="/products?category=Gaming"
+                    className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                  >
+                    Gaming
+                  </Link>
+                  <Link
+                    href="/products?category=Mobile"
+                    className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                  >
+                    Mobile
+                  </Link>
+                  <Link
+                    href="/products?category=tv"
+                    className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                  >
+                    Television
+                  </Link>
+                </div>
+              </div>
+
+              {/* Links */}
               <Link
-                href="/products?category=All Categories"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                href="/about-us"
+                className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
               >
-                All Categories
+                About Us
               </Link>
               <Link
-                href="/products?category=Audio"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
+                href="/contact-us"
+                className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
               >
-                Audio
-              </Link>
-              <Link
-                href="/products?category=Gaming"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Gaming
-              </Link>
-              <Link
-                href="/products?category=Mobile"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Mobile
-              </Link>
-              <Link
-                href="/products?category=tv"
-                className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
-              >
-                Television
+                Contact Us
               </Link>
             </div>
-          )}
+
+            {/* Icons */}
+            <div className="flex items-center gap-4 mt-8">
+              {/* Wishlist Icon with Badge */}
+              <Link href="/wishlist-products">
+                <button className="relative text-gray-700 hover:text-orange-500">
+                  <HeartIcon />
+                  {wishlist.length > 0 && (
+                    <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      {wishlist.length}
+                    </span>
+                  )}
+                </button>
+              </Link>
+
+              {/* Cart Icon with Badge */}
+              <Link href="/shopping-cart">
+                <button className="relative text-gray-700 hover:text-orange-500">
+                  <CartIcon />
+                  {cart.length > 0 && (
+                    <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      {cart.length}
+                    </span>
+                  )}
+                </button>
+              </Link>
+
+              {/* User Icon */}
+              {storedUsers ? (
+                <Link href="/user/profile">
+                  <button className="text-gray-700 hover:text-orange-500">
+                    <UserIcon />
+                  </button>
+                </Link>
+              ) : (
+                <Link href="/sign-in">
+                  <button className="text-gray-700 hover:text-orange-500">
+                    <UserIcon />
+                  </button>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
-
-        {/* Links */}
-        <Link
-          href="/about-us"
-          className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
-        >
-          About Us
-        </Link>
-        <Link
-          href="/contact-us"
-          className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
-        >
-          Contact Us
-        </Link>
       </div>
-
-      {/* Icons */}
-      <div className="flex items-center gap-4 mt-8">
-        {/* Wishlist Icon with Badge */}
-        <Link href="/wishlist-products">
-          <button className="relative text-gray-700 hover:text-orange-500">
-            <HeartIcon />
-            {wishlist.length > 0 && (
-              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {wishlist.length}
-              </span>
-            )}
-          </button>
-        </Link>
-
-        {/* Cart Icon with Badge */}
-        <Link href="/shopping-cart">
-          <button className="relative text-gray-700 hover:text-orange-500">
-            <CartIcon />
-            {cart.length > 0 && (
-              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                {cart.length}
-              </span>
-            )}
-          </button>
-        </Link>
-
-        {/* User Icon */}
-        {storedUsers ? (
-          <Link href="/user/profile">
-            <button className="text-gray-700 hover:text-orange-500">
-              <UserIcon />
-            </button>
-          </Link>
-        ) : (
-          <Link href="/sign-in">
-            <button className="text-gray-700 hover:text-orange-500">
-              <UserIcon />
-            </button>
-          </Link>
-        )}
-      </div>
-    </div>
-  </div>
-</div>
-
     </nav>
   );
 };
