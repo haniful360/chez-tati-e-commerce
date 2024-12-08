@@ -53,9 +53,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <PageBanner backgroundImage={signUp_banner} breadcrumbs={breadcrumbs} />
-      <div className="flex items-center justify-center bg-gray-100 py-12">
+      <div className="flex items-center justify-center bg-gray-100 md:py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">
             Create Account
@@ -149,8 +149,7 @@ const SignUp = () => {
                 required
               />
               <label htmlFor="terms" className="ml-2 text-sm">
-                Accept all{" "}
-                <Link href="#" className="text-blue-500">
+                Accept all <Link href="/terms-condition" className="text-blue-500">
                   terms & Conditions
                 </Link>
               </label>
@@ -181,13 +180,12 @@ const SignUp = () => {
 
           {/* Sign In Link */}
           <div className="text-center mt-6">
-            <p className="text-sm md:text-xl">
-              Already have an account?{" "}
+            <p className="text-sm md:text-base">
+              Already have an account?
               <Link
                 href="/sign-in"
                 className="text-orange-500 hover:underline font-semibold"
-              >
-                Sign In
+              > Sign In
               </Link>
             </p>
           </div>

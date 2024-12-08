@@ -1,15 +1,21 @@
-// pages/cart.js
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import category_banner from "@/public/icon/category_banner.svg";
+import banner from "@/public/images/banner-section.png";
 import Image from "next/image";
+import PageBanner from "@/components/PageBanner";
+import HomeIcon from "@/components/svg/HomeIcon";
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
 
-  // Load cart data from localStorage when the component mounts
+  const breadcrumbs = [
+    { label: <HomeIcon />, href: "/" },
+    { label: "Shopping-Cart" },
+  ];
+
+  // Load cart data from localStorage
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(savedCart);
@@ -65,19 +71,12 @@ export default function Cart() {
   );
 
   return (
-    <div className="bg-gray-100 py-16 mt-20">
-      <Image
-        className="w-full"
-        src={category_banner}
-        height={130}
-        width={1200}
-        alt=""
-      />
-      <div className="max-w-[1280px] mx-auto px-4">
+    <div>
+      <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
+      <div className="max-w-[1320px] mx-auto px-4 pb-10">
         <h1 className="text-3xl font-semibold my-10">My Shopping Cart</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
-            {/* Add overflow-x-auto wrapper */}
             <div className="overflow-x-auto">
               <table className="w-full min-w-[600px] lg:min-w-full">
                 <thead>
@@ -108,7 +107,7 @@ export default function Cart() {
                           {item.image ? (
                             <Image
                               src={item.image}
-                              alt=''
+                              alt=""
                               className="w-16 h-16 rounded-md object-cover"
                               height={64}
                               width={64}
@@ -180,7 +179,6 @@ export default function Cart() {
               </Link>
               <button
                 onClick={() => {
-                  // Trigger SweetAlert for confirmation
                   Swal.fire({
                     title: "All products will be removed from your cart",
                     text: "Remove",
@@ -193,9 +191,7 @@ export default function Cart() {
                     if (result.isConfirmed) {
                       // Clear the cart in state
                       setCart([]);
-                      // Remove the cart from localStorage
                       localStorage.removeItem("cart");
-                      // Show success message
                       Swal.fire(
                         "Cleared!",
                         "Your cart has been cleared.",
@@ -224,9 +220,11 @@ export default function Cart() {
               <span>Total:</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="w-full mt-4 px-4 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300">
-              Proceed to checkout
-            </button>
+            <Link href='/checkout'>
+              <button className="w-full mt-4 px-4 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300">
+                Proceed to checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>

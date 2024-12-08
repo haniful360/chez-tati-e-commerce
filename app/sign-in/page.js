@@ -18,18 +18,9 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // Check if user is already logged in
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   if (storedUser) {
-  //     // If user is found in localStorage, redirect to dashboard
-  //     router.push("/dashboard");
-  //   }
-  // }, [router]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(""); // Reset error state
+    setError("");
   
     // Simple validation for empty fields
     if (!email || !password) {
@@ -68,7 +59,7 @@ const SignIn = () => {
   return (
     <div>
       <PageBanner backgroundImage={signIn_banner} breadcrumbs={breadcrumbs} />
-      <div className="flex items-center justify-center bg-gray-100 py-12">
+      <div className="flex items-center justify-center bg-gray-100 md:py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
@@ -162,13 +153,12 @@ const SignIn = () => {
 
           {/* Sign In Link */}
           <div className="text-center mt-6">
-            <p className="text-sm md:text-xl">
+            <p className="text-sm md:text-base">
               Don't have an account?
               <Link
                 href="/sign-up"
                 className="text-orange-500 hover:underline font-semibold"
-              >
-                Sign up
+              > Sign up
               </Link>
             </p>
           </div>

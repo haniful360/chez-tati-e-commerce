@@ -1,12 +1,20 @@
-import Head from 'next/head';
-import React from 'react';
+import Head from "next/head";
+import React from "react";
+import banner from "@/public/images/banner-section.png";
+import PageBanner from "@/components/PageBanner";
+import HomeIcon from "@/components/svg/HomeIcon";
 
 const AboutUs = () => {
-    return (
-        <>
+  const breadcrumbs = [
+    { label: <HomeIcon />, href: "/" },
+    { label: "About Us" },
+  ];
+  return (
+    <>
       <Head>
         <title>About Us</title>
       </Head>
+      <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
 
       <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
@@ -67,7 +75,7 @@ const AboutUs = () => {
         </section>
       </div>
     </>
-    );
+  );
 };
 
 export default AboutUs;

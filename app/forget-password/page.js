@@ -1,22 +1,23 @@
 "use client";
-import signIn_banner from "@/public/icon/sign-in.svg";
-import Image from "next/image";
+import PageBanner from "@/components/PageBanner";
+import HomeIcon from "@/components/svg/HomeIcon";
+import banner from "@/public/images/banner-section.png";
+
 
 const ForgetPassword = () => {
 
+  const breadcrumbs = [
+    { label: <HomeIcon />, href: "/" },
+    { label: "Forget Password" },
+  ];
+
   return (
     <div>
-      <Image
-        className="w-full mt-[150px]"
-        src={signIn_banner}
-        width={1500}
-        height={120}
-        alt=""
-      />
+      <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
       <div className="flex items-center justify-center bg-gray-100 py-12">
         <div className="w-full max-w-[600px] bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">
-            Sign In
+           Forget Password
           </h2>
 
           <form>
