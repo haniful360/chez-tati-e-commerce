@@ -11,8 +11,9 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingWishlist, setLoadingWishlist] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8; // Set number of products per page
 
-  // Fetch products when the component mounts
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -21,9 +22,9 @@ export default function Products() {
           throw new Error("Failed to fetch products");
         }
         const data = await res.json();
-        setProducts(data.products.slice(0, 8)); // Limit to first 8 products
+        setProducts(data.products); // Fetch all products for pagination
       } catch (err) {
-        setError(err.message);
+        console.error(err.message);
       } finally {
         setLoading(false);
       }
@@ -36,31 +37,41 @@ export default function Products() {
 
   const handleWishlistToggle = async (product) => {
     const isProductInWishlist = wishlist.some((item) => item.id === product.id);
-    setLoadingWishlist(product.id); // Set loading state to the product being processed
+    setLoadingWishlist(product.id);
 
     try {
-      // Simulate an API request or a time delay for adding/removing from wishlist
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating a 1-second delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toggleWishlist(product);
       const action = isProductInWishlist ? "removed from" : "added to";
 
       Swal.fire({
         title: "Wishlist Updated!",
-        text: ` has been ${action} your wishlist.`,
+        text: `Product has been ${action} your wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
         confirmButtonText: "OK",
         timer: 2000,
         timerProgressBar: true,
       });
     } finally {
-      setLoadingWishlist(null); // Reset loading state after the operation is done
+      setLoadingWishlist(null);
     }
   };
 
   if (loading) {
     return <div className="text-center py-12">Loading...</div>;
   }
+
+  // Paginate products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const categories = [
     { label: "New Arrival", className: "border-gray-300 hover:bg-gray-200" },
@@ -94,7 +105,7 @@ export default function Products() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {products.map((product, index) => (
+          {currentProducts.map((product, index) => (
             <div
               key={product.id}
               className="relative rounded-lg overflow-hidden"
@@ -112,7 +123,7 @@ export default function Products() {
                       width={500}
                       height={286}
                       className="w-full h-auto rounded-[20px]"
-                      priority={index < 2} // Prioritize first few images for faster load
+                      priority={index < 2}
                     />
                   </div>
 
@@ -136,13 +147,46 @@ export default function Products() {
                 }`}
               >
                 {loadingWishlist === product.id ? (
-                 <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
                 ) : (
                   <HeartIcon />
                 )}
               </button>
             </div>
           ))}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-end my-6 space-x-2">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-5 py-2 bg-[#EA5326] text-white rounded-full shadow-md hover:bg-[#D14924] disabled:opacity-50 transition-all duration-300"
+          >
+            Previous
+          </button>
+
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`px-5 py-2 rounded-full transition-all duration-300 ${
+                currentPage === index + 1
+                  ? 'bg-[#EA5326] text-white font-semibold shadow-md'
+                  : 'bg-white text-gray-600 border-2 border-gray-300 hover:bg-[#EA5326] hover:text-white'
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-5 py-2 bg-[#EA5326] text-white rounded-full shadow-md hover:bg-[#D14924] disabled:opacity-50 transition-all duration-300"
+          >
+            Next
+          </button>
         </div>
       </div>
     </section>
