@@ -89,7 +89,7 @@ const ContactUs = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="w-full max-w-xs mx-auto py-3 px-6 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 transition duration-200"
+                  className="w-full  mx-auto py-3 px-6 bg-orange-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 transition duration-200"
                 >
                   Submit
                 </button>

@@ -36,8 +36,14 @@ export default function ProductsPage() {
 
   return (
     <>
-      <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
-      {isLoading ? <Loading /> : <ClientProductsPage products={products} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div>
+          <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
+          <ClientProductsPage products={products} />
+        </div>
+      )}
     </>
   );
 }

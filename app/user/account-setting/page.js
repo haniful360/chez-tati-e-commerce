@@ -1,6 +1,7 @@
+'use client'
 import Image from "next/image";
 import avater from "@/public/images/user.png";
-
+import withAuth from "@/components/protectedRoute/withAuth";
 
 const AccountSetting = () => {
  
@@ -161,4 +162,4 @@ const AccountSetting = () => {
   );
 };
 
-export default AccountSetting;
+export default withAuth(AccountSetting);

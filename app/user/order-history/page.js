@@ -1,4 +1,5 @@
 'use client'
+import withAuth from "@/components/protectedRoute/withAuth";
 import Link from "next/link";
 
 const OrderHistory = () => {
@@ -58,4 +59,4 @@ const OrderHistory = () => {
   );
 };
 
-export default OrderHistory;
+export default withAuth(OrderHistory);

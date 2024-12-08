@@ -14,7 +14,7 @@ import CrossIcon from "./svg/CrossIcon";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishListContext";
-import { useSearchParams } from "next/navigation";
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,9 +104,9 @@ const Navbar = () => {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
-              className="hover:text-orange-600 lg:text-[18px] text-[#4E4E4E] font-semibold flex items-center gap-[1px]"
+              className="hover:text-orange-600 lg:text-[18px] text-[#4E4E4E] font-medium flex items-center gap-[1px]"
             >
-              All Category
+              All Categories
               <DownArrow />
             </button>
             {isOpen && (
@@ -147,13 +147,13 @@ const Navbar = () => {
 
           <Link
             href="/about-us"
-            className="hover:text-orange-500 text-[#4E4E4E] font-semibold lg:text-[18px]"
+            className="hover:text-orange-500 text-[#4E4E4E] font-medium lg:text-[18px]"
           >
             About Us
           </Link>
           <Link
             href="/contact-us"
-            className="hover:text-orange-500 text-[#4E4E4E] font-semibold lg:text-[18px]"
+            className="hover:text-orange-500 text-[#4E4E4E] font-medium lg:text-[18px]"
           >
             Contact Us
           </Link>

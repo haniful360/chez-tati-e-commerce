@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 import avater from "@/public/images/user.png";
+import withAuth from "@/components/protectedRoute/withAuth";
 const Profile = () => {
   const orders = [
     {
@@ -106,4 +107,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withAuth(Profile);
