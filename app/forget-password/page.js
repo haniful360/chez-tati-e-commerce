@@ -2,6 +2,7 @@
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
 import banner from "@/public/images/banner-section.png";
+import { useEffect } from "react";
 
 
 const ForgetPassword = () => {

@@ -161,7 +161,7 @@ const SignIn = () => {
           {/* Sign In Link */}
           <div className="text-center mt-6">
             <p className="text-sm md:text-base">
-              Don't have an account?
+              Do not have an account?
               <Link
                 href="/sign-up"
                 className="text-orange-500 hover:underline font-semibold"

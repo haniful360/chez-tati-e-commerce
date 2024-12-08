@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 const withAuth = (WrappedComponent) => {
-  return (props) => {
+  const WithAuth = (props) => {
     const router = useRouter();
     const isAuthenticated = localStorage.getItem("users");
 
@@ -19,6 +19,11 @@ const withAuth = (WrappedComponent) => {
 
     return <WrappedComponent {...props} />;
   };
+
+  // Set the displayName of the HOC
+  WithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+  return WithAuth;
 };
 
 export default withAuth;

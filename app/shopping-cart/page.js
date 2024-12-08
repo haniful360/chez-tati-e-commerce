@@ -210,7 +210,7 @@ export default function Cart() {
           <div className="text-center py-10">
             <h2 className="text-2xl font-semibold">Your cart is empty</h2>
             <p className="mt-4 text-gray-500">
-              Looks like you haven't added anything to your cart yet.
+              Looks like you have not added anything to your cart yet.
             </p>
             <Link href="/products">
               <button className="mt-6 px-6 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300">

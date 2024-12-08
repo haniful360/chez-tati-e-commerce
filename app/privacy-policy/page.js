@@ -7,14 +7,14 @@ const PrivacyPolicy = () => {
 
 
 
-Chez Tati knows that protecting the privacy and confidentiality of your personal information is of the utmost importance. Collection, use and disclosure of personal information by Maxx is governed by the Personal Information Protection and Electronic Documents Act (the "Act"), and any applicable provincial legislation. This Privacy Policy explains what personal information is collected from its customers and how it is used. This Privacy Policy applies to personal information such as name, address, phone number, e-mail address collected by Chez tati on its website.
+Chez Tati knows that protecting the privacy and confidentiality of your personal information is of the utmost importance. Collection, use and disclosure of personal information by Maxx is governed by the Personal Information Protection and Electronic Documents Act the Act, and any applicable provincial legislation. This Privacy Policy explains what personal information is collected from its customers and how it is used. This Privacy Policy applies to personal information such as name, address, phone number, e-mail address collected by Chez tati on its website.
 
 Be aware that our website may contain links to other websites provided and maintained exclusively by third parties not subject to this Privacy Policy. Please review the privacy policies on any external websites to determine their information handling practices.
 
 Chez Tati will never sell your information, nor will we make it available to a third party unless there is a request from a law enforcement agency.
 
 What personal information we collect, and why?
-Chez tati collects personal information for specific, limited purposes. Information is collected by fair and lawful means. We collect personal contact information (for example, name, address, email address and telephone numbers) when you register as a member on our website. This information is used to fulfill your request and respond to your inquiries.
+Chez tati collects personal information for specific, limited purposes. Information is collected by fair and lawful means. We collect personal contact information for example, name, address, email address and telephone numbers when you register as a member on our website. This information is used to fulfill your request and respond to your inquiries.
 
 We collect demographic information, as well as purchase history, in order to gain a better understanding of your interests so that we may develop better service.
 

@@ -82,7 +82,7 @@ const WishlistProducts = () => {
           <div className="flex flex-col items-center justify-center pb-16 text-center">
             <EmptyIcon />
             <h2 className="text-lg font-semibold">
-              You don't have any favorite products
+              You do not have any favorite products
             </h2>
           </div>
         </div>

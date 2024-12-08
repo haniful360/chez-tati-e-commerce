@@ -1,5 +1,7 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
+import avater from "@/public/images/user.png";
 
 const AccountSetting = () => {
   const [account, setAccount] = useState({
@@ -68,8 +70,8 @@ const AccountSetting = () => {
           </div>
           <div className="flex justify-center items-center">
             <div>
-              <img
-                src="https://via.placeholder.com/150"
+              <Image
+                src={avater}
                 alt="Profile"
                 className="rounded-full h-36 w-36 mb-8"
               />
