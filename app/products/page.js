@@ -24,6 +24,10 @@ export default function ProductsPage() {
   ];
 
   useEffect(() => {
+    document.title = "Products | Chez Tati";
+  }, []);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
       const response = await fetch("https://fakestoreapi.in/api/products", {

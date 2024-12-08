@@ -6,6 +6,10 @@ import banner from "@/public/images/banner-section.png";
 
 const ForgetPassword = () => {
 
+  useEffect(() => {
+    document.title = "Forget Password | Chez Tati";
+  }, []);
+
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
     { label: "Forget Password" },

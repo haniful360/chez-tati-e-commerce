@@ -4,14 +4,21 @@ import PorductImage from "@/components/products/PorductImage";
 import ProductInfo from "@/components/products/ProductInfo";
 import CustomerFeedback from "@/components/products/CustomerFeedback";
 import ProductCard from "@/components/products/ProductCard";
-import category_banner from "@/public/icon/category_banner.svg";
+import banner from "@/public/images/banner-section.png";
 import Image from "next/image";
 import Loading from "@/components/loading";
+import PageBanner from "@/components/PageBanner";
+import HomeIcon from "@/components/svg/HomeIcon";
 
 const ProductDynamicPage = ({ params }) => {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    document.title = "Product Details | Chez Tati";
+  }, []);
+
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -62,15 +69,15 @@ const ProductDynamicPage = ({ params }) => {
     );
   }
 
+  const breadcrumbs = [
+    { label: <HomeIcon />, href: "/" },
+    { label: 'Categories', href: "/products" },
+    { label: "Details" },
+  ];
+
   return (
-    <div className="bg-gray-100 md:py-20 md:pb-8 lg:mt-[75px]">
-      <Image
-        className="w-full"
-        src={category_banner}
-        height={130}
-        width={1200}
-        alt="Category Banner"
-      />
+    <div className="bg-gray-100  md:pb-8">
+      <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
       <div className="max-w-[1280px] mx-auto p-6 mb-12">
         {/* Product Section */}
         <div className="flex flex-col lg:flex-row gap-6">

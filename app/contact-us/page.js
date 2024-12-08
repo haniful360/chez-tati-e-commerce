@@ -1,13 +1,20 @@
-import React from "react";
+
 import banner from "@/public/images/banner-section.png";
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
 
+export const metadata = {
+  title: "Contact | Chez Tati",
+  description: "Get in touch with Chez Tati. We are available 24/7.",
+};
+
 const ContactUs = () => {
+
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
     { label: "Contact Us" },
   ];
+
   return (
     <div>
       <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />

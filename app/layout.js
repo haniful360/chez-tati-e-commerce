@@ -29,6 +29,12 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <html lang="en">
+      <head>
+        {/* Add the favicon */}
+        <link rel="icon" href="/favicon.svg?v=1" type="image/svg+xml" />
+
+        <title>Chez Tati</title>
+      </head>
       <body className={figtree.className}>
         <CartProvider>
           <WishlistProvider>

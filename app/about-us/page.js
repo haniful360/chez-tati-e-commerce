@@ -4,6 +4,13 @@ import banner from "@/public/images/banner-section.png";
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
 
+
+export const metadata = {
+  title: "About | Chez Tati",
+  description: "Get in touch with Chez Tati. We are available 24/7.",
+};
+
+
 const AboutUs = () => {
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },

@@ -1,7 +1,7 @@
 "use client";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishListContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
@@ -21,6 +21,10 @@ const WishlistProducts = () => {
     { label: <HomeIcon />, href: "/" },
     { label: "Favorite Products" },
   ];
+
+  useEffect(() => {
+    document.title = "Wishlist | Chez Tati";
+  }, []);
 
   const handleWishlistToggle = (product) => {
     setLoadingProductId(product.id);

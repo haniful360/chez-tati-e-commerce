@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import signUp_banner from "@/public/images/banner-section.png";
 import google from "@/public/icon/google.svg";
 import eyeIcon from "@/public/icon/eye.svg"; // Add your eye icon here
@@ -51,6 +51,10 @@ const SignUp = () => {
     setConfirmPassword("");
     setError("");
   };
+
+  useEffect(() => {
+    document.title = "Sign Up | Chez Tati";
+  }, []);
 
   return (
     <div>

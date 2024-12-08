@@ -18,6 +18,8 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
@@ -55,6 +57,11 @@ const SignIn = () => {
     { label: <HomeIcon />, href: "/" },
     { label: "SignIn" },
   ];
+
+  useEffect(() => {
+    document.title = "Sign In | Chez Tati";
+  }, []);
+  
 
   return (
     <div>

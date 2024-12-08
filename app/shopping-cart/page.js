@@ -15,6 +15,10 @@ export default function Cart() {
     { label: "Shopping-Cart" },
   ];
 
+  useEffect(() => {
+    document.title = "Shopping Cart | Chez Tati";
+  }, []);
+
   // Load cart data from localStorage
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
