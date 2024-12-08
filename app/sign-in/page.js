@@ -42,7 +42,7 @@ const SignIn = () => {
       );
   
       if (user) {
-        router.push("/user/profile");
+        router.push("/");
       } else {
         setError("Invalid email or password.");
       }
