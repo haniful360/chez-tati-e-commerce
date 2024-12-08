@@ -110,10 +110,10 @@ const Navbar = () => {
               <DownArrow />
             </button>
             {isOpen && (
-              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48">
+              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md w-48 py-1">
                 <Link
                   href="/products?category=All Categories"
-                  className="block px-4 py-2 text-sm text-[#232323] border-t border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
+                  className="block px-4 py-2 text-sm text-[#232323]  border-gray-200 rounded-md hover:bg-orange-500 hover:text-white transition-all"
                 >
                   All Categories
                 </Link>

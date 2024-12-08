@@ -1,24 +1,43 @@
+"use client";
 
+import { useState, useEffect } from "react";
 import PageBanner from "@/components/PageBanner";
 import ClientProductsPage from "@/components/products/ClientProductsPage";
+import Loading from "@/components/loading";
 import banner from "@/public/images/banner-section.png";
 
-export default async function ProductsPage() {
+export default function ProductsPage() {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
     { label: "Categories" },
   ];
 
-  const response = await fetch("https://fakestoreapi.in/api/products", {
-    cache: "no-store",
-  });
-  const data = await response.json();
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://fakestoreapi.in/api/products", {
+          cache: "no-store",
+        });
+        const data = await response.json();
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
       <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
-      <ClientProductsPage products={data.products} />
+      {isLoading ? <Loading /> : <ClientProductsPage products={products} />}
     </>
   );
 }

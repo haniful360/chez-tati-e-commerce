@@ -1,14 +1,12 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ProductCard from "@/components/products/ProductCard";
 import Sidebar from "@/components/products/Sidebar";
-import Loading from "@/components/loading";
+
 
 export default function ClientProductsPage({ products }) {
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -49,12 +47,6 @@ export default function ClientProductsPage({ products }) {
 
   return (
     <div className="relative max-w-[1320px] mx-auto min-h-screen pb-10">
-      {isLoading && (
-        <div className="absolute inset-0 flex justify-center items-center bg-opacity-50 z-50">
-          <Loading />
-        </div>
-      )}
-
       <div className="flex justify-end">
         <p className="text-base my-4">
           <span className="font-semibold">{filteredProducts.length} </span>
