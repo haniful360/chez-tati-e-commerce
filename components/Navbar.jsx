@@ -210,17 +210,18 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div>
+        
         {/* Overlay */}
         {isMenuOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            className="fixed inset-0 bg-black bg-opacity-70 z-40"
             onClick={toggleMenu}
           ></div>
         )}
 
         {/* Sliding Menu */}
         <div
-          className={`xl:hidden fixed top-0 right-0 h-full w-[75%] md:w-[35%] bg-white shadow-md z-50 transform ${
+          className={`xl:hidden fixed top-0 right-0 h-full mx-auto w-[75%] md:w-[35%] bg-white shadow-md z-50 transform ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           } transition-transform duration-300`}
         >
@@ -228,22 +229,55 @@ const Navbar = () => {
           <div className="flex justify-end p-4">
             <button
               onClick={toggleMenu}
-              className="text-black mt-4 pr-4 hover:text-orange-500"
+              className="text-black mt-4 pr-4 hover:text-orange-500 absolute"
             >
               <CrossIcon />
             </button>
           </div>
 
+          {/* logo and searchbar */}
+
+          <Link href="/">
+          <Image
+            src={logo}
+            alt="Chez Tati"
+            width={40}
+            height={40}
+            className="w-[150px] h-[56px] mx-auto"
+          />
+        </Link>
+
+        <div className="flex justify-center mt-4  w-9/12 mx-auto">
+            <div className="flex justify-center relative">
+              {/* Search Icon */}
+              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500">
+                <SearchIcon />
+              </span>
+
+              {/* Search Input */}
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-full h-[40px] border border-[#E6E6E6] rounded-l-full pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              />
+
+              {/* Search Button */}
+              <button className="bg-[#EA5326] text-white px-4 py-2 rounded-r-full hover:bg-orange-600 h-[40px] w-[88px]">
+                Search
+              </button>
+            </div>
+          </div>
+
           {/* Menu Content */}
-          <div className="px-4 py-4">
-            <div className="space-y-4">
+          <div className="py-4 flex flex-col items-center">
+            <div className="space-y-4 text-center">
               {/* Dropdown Menu */}
               <div className="relative group">
                 <button className="flex items-center hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]">
                   All Categories
                   <DownArrow />
                 </button>
-                <div className="absolute left-0 mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity z-50">
+                <div className="absolute left-[-25px]  right-0 top-[175px] mt-2 bg-white shadow-lg rounded-md py-2 w-48 opacity-0 group-hover:opacity-100 group-hover:block transition-opacity z-50">
                   <Link
                     href="/products?category=All Categories"
                     className="block px-4 py-2 text-sm text-[#232323] hover:bg-orange-500 hover:text-white transition-all"
@@ -280,20 +314,21 @@ const Navbar = () => {
               {/* Links */}
               <Link
                 href="/about-us"
-                className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
+                className="hover:text-orange-500 text-[#4E4E4E] inline-block font-semibold text-[18px]"
               >
                 About Us
               </Link>
+              <br />
               <Link
                 href="/contact-us"
-                className="hover:text-orange-500 text-[#4E4E4E] font-semibold text-[18px]"
+                className="hover:text-orange-500 inline-block text-[#4E4E4E] font-semibold text-[18px]"
               >
                 Contact Us
               </Link>
             </div>
 
             {/* Icons */}
-            <div className="flex items-center gap-4 mt-8">
+            <div className="flex items-center gap-5 mt-8">
               {/* Wishlist Icon with Badge */}
               <Link href="/wishlist-products">
                 <button className="relative text-gray-700 hover:text-orange-500">
