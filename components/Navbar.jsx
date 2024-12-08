@@ -51,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed z-50 w-full top-0 left-0 right-0 bg-[#F8FAFC] h-[80px] md:h-[140px] border-b-2 border-[#DFE1E3]">
+    <nav className="fixed z-50 w-full top-0 left-0 right-0 bg-[#F8FAFC] h-[80px] md:h-[100px] lg:h-[140px] border-b-2 border-[#DFE1E3]">
       <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-between h-full px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -61,28 +61,13 @@ const Navbar = () => {
               alt="Chez Tati"
               width={40}
               height={40}
-              className="w-[186px] h-[86px] hidden md:block"
-            />
-            <Image
-              src={responsive_logo}
-              alt="Chez Tati"
-              width={20}
-              height={20}
-              className="w-[40px] h-[40px] md:hidden"
+              className="w-[146] h-[56px] md:w-[186px] lg:h-[86px]"
             />
           </Link>
         </div>
 
-        {/* Mobile Hamburger Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="2xl:hidden text-gray-700 hover:text-orange-500"
-        >
-          {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
-        </button>
-
         {/* Search Bar */}
-        <div className="hidden xl:block">
+        <div className="hidden lg:block">
           <div className="flex mt-4 md:mt-0 w-full sm:w-[350px] md:w-[400px] lg:w-[498px] ">
             <div className="flex justify-center relative w-full">
               {/* Search Icon */}
@@ -104,6 +89,14 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={toggleMenu}
+          className="xl:hidden text-gray-700 hover:text-orange-500"
+        >
+          {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
+        </button>
 
         {/* Desktop Navigation Links */}
         <div className="hidden xl:flex space-x-6 mt-4 md:mt-0 font-figtree text-[#232323]">
@@ -210,7 +203,6 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div>
-        
         {/* Overlay */}
         {isMenuOpen && (
           <div
@@ -238,16 +230,16 @@ const Navbar = () => {
           {/* logo and searchbar */}
 
           <Link href="/">
-          <Image
-            src={logo}
-            alt="Chez Tati"
-            width={40}
-            height={40}
-            className="w-[150px] h-[56px] mx-auto"
-          />
-        </Link>
+            <Image
+              src={logo}
+              alt="Chez Tati"
+              width={40}
+              height={40}
+              className="w-[150px] h-[56px] mx-auto"
+            />
+          </Link>
 
-        <div className="flex justify-center mt-4  w-9/12 mx-auto">
+          <div className="flex justify-center mt-4  w-9/12 mx-auto">
             <div className="flex justify-center relative">
               {/* Search Icon */}
               <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500">

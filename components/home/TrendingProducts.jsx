@@ -47,7 +47,7 @@ export default function Products() {
 
       Swal.fire({
         title: "Wishlist Updated!",
-        text: `${product.title} has been ${action} your wishlist.`,
+        text: ` has been ${action} your wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
         confirmButtonText: "OK",
         timer: 2000,
