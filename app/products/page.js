@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Loading from "@/components/loading";
 import ProductCard from "@/components/products/ProductCard";
@@ -77,7 +77,7 @@ export default function ProductsPage() {
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   return (
-    <div>
+    <Suspense>
       <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
       <div className="relative max-w-[1320px] mx-auto min-h-screen pb-10">
         {isLoading && (
@@ -136,6 +136,6 @@ export default function ProductsPage() {
           </button>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 }

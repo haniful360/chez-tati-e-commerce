@@ -1,27 +1,26 @@
-"use client";
+
 import Image from "next/image";
-import React, { useState } from "react";
 import avater from "@/public/images/user.png";
 
 const AccountSetting = () => {
-  const [account, setAccount] = useState({
-    firstName: "Dianne",
-    lastName: "Russell",
-    email: "dianne.russell@gmail.com",
-    phone: "(603) 555-0123",
-  });
+  // const [account, setAccount] = useState({
+  //   firstName: "Dianne",
+  //   lastName: "Russell",
+  //   email: "dianne.russell@gmail.com",
+  //   phone: "(603) 555-0123",
+  // });
 
-  const [billing, setBilling] = useState({
-    firstName: "Dianne",
-    lastName: "Dianne",
-    companyName: "Zakirsoft",
-    address: "4140 Parl",
-    country: "United States",
-    state: "Washington DC",
-    zip: "20033",
-    email: "dianne.russell@gmail.com",
-    phone: "(603) 555-0123",
-  });
+  // const [billing, setBilling] = useState({
+  //   firstName: "Dianne",
+  //   lastName: "Dianne",
+  //   companyName: "Zakirsoft",
+  //   address: "4140 Parl",
+  //   country: "United States",
+  //   state: "Washington DC",
+  //   zip: "20033",
+  //   email: "dianne.russell@gmail.com",
+  //   phone: "(603) 555-0123",
+  // });
 
   return (
     <div className="lg:col-span-3 space-y-6">
