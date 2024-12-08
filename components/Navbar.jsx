@@ -23,12 +23,12 @@ const Navbar = () => {
   const { wishlist } = useWishlist();
   const dropdownRef = useRef(null);
 
-  // const [storedUsers, setStoredUsers] = useState(null);
+  const [storedUsers, setStoredUsers] = useState(null);
 
-  // useEffect(() => {
-  //   const user = localStorage.getItem("users");
-  //   // setStoredUsers(user);
-  // }, []);
+  useEffect(() => {
+    const user = localStorage.getItem("users");
+    setStoredUsers(user);
+  }, []);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -186,7 +186,7 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
-          {/* {storedUsers ? (
+          {storedUsers ? (
             <Link href="/user/profile">
               <button className="text-gray-700 hover:text-orange-500">
                 <UserIcon />
@@ -198,12 +198,8 @@ const Navbar = () => {
                 <UserIcon />
               </button>
             </Link>
-          )} */}
-          <Link href="/sign-in">
-            <button className="text-gray-700 hover:text-orange-500">
-              <UserIcon />
-            </button>
-          </Link>
+          )}
+          
         </div>
       </div>
 
@@ -352,7 +348,7 @@ const Navbar = () => {
               </Link>
 
               {/* User Icon */}
-              {/* {storedUsers ? (
+              {storedUsers ? (
                 <Link href="/user/profile">
                   <button className="text-gray-700 hover:text-orange-500">
                     <UserIcon />
@@ -364,12 +360,8 @@ const Navbar = () => {
                     <UserIcon />
                   </button>
                 </Link>
-              )} */}
-              <Link href="/sign-in">
-                <button className="text-gray-700 hover:text-orange-500">
-                  <UserIcon />
-                </button>
-              </Link>
+              )}
+              
             </div>
           </div>
         </div>
