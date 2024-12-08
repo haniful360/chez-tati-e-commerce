@@ -15,7 +15,6 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishListContext";
 
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -69,8 +68,8 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="hidden lg:block">
-          <div className="flex mt-4 md:mt-0 w-full sm:w-[350px] md:w-[400px] lg:w-[498px] ">
-            <div className="flex justify-center relative w-full">
+          <div className="flex justify-center mt-4 md:mt-0  sm:w-[350px] md:w-[400px] lg:w-[498px] ">
+            <div className="flex justify-center relative w-5/6 focus-within:ring-2 focus-within:ring-orange-500 rounded-full">
               {/* Search Icon */}
               <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-500">
                 <SearchIcon />
@@ -80,11 +79,11 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full h-[46px] border border-[#E6E6E6] rounded-l-md pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full h-[42px] border border-[#E6E6E6] rounded-l-full pl-10 pr-4 focus:outline-none  focus:border-transparent"
               />
 
               {/* Search Button */}
-              <button className="bg-[#EA5326] text-white px-4 py-2 rounded-r-md hover:bg-orange-600 h-[46px] w-[98px]">
+              <button className="bg-[#EA5326] text-white px-4 py-2 rounded-r-full hover:bg-orange-600 h-[42px] w-[98px]">
                 Search
               </button>
             </div>
@@ -199,7 +198,6 @@ const Navbar = () => {
               </button>
             </Link>
           )}
-          
         </div>
       </div>
 
@@ -361,7 +359,6 @@ const Navbar = () => {
                   </button>
                 </Link>
               )}
-              
             </div>
           </div>
         </div>

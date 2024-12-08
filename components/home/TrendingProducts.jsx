@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import HeartIcon from "../svg/HeartIcon";
+
 import Swal from "sweetalert2";
 import { useWishlist } from "@/context/WishListContext";
+import WishlistFilled from "../svg/WishlistFilled";
+import WishlistIcon from "../svg/WishlistIcon";
+
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -65,7 +68,10 @@ export default function Products() {
   // Paginate products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
@@ -140,16 +146,18 @@ export default function Products() {
               {/* Wishlist Button */}
               <button
                 onClick={() => handleWishlistToggle(product)}
-                className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-300 ${
+                className={`absolute z-10 top-4 right-6 flex items-center justify-center w-[40px] h-[40px] p-2 rounded-full shadow transition-all duration-1000 hover:bg-red-500 hover:text-white ${
                   wishlist.some((item) => item.id === product.id)
-                    ? "bg-red-500 text-white"
+                    ? "bg-red-100 text-white"
                     : "bg-gray-200 text-black"
                 }`}
               >
                 {loadingWishlist === product.id ? (
                   <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                ) : wishlist.some((item) => item.id === product.id) ? (
+                  <WishlistFilled /> 
                 ) : (
-                  <HeartIcon />
+                  <WishlistIcon />
                 )}
               </button>
             </div>
@@ -172,8 +180,8 @@ export default function Products() {
               onClick={() => handlePageChange(index + 1)}
               className={`px-5 py-2 rounded-full transition-all duration-300 ${
                 currentPage === index + 1
-                  ? 'bg-[#EA5326] text-white font-semibold shadow-md'
-                  : 'bg-white text-gray-600 border-2 border-gray-300 hover:bg-[#EA5326] hover:text-white'
+                  ? "bg-[#EA5326] text-white font-semibold shadow-md"
+                  : "bg-white text-gray-600 border-2 border-gray-300 hover:bg-[#EA5326] hover:text-white"
               }`}
             >
               {index + 1}

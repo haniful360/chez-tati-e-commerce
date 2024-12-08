@@ -9,7 +9,7 @@ const WishlistFilled = () => {
             viewBox="0 0 24 24"
             fill="#EA5326"
             stroke="currentColor"
-            strokeWidth="2"
+            // strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
             className="lucide lucide-heart cursor-pointer"
