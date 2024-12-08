@@ -14,6 +14,7 @@ import CrossIcon from "./svg/CrossIcon";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishListContext";
+import { useSearchParams } from "next/navigation";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,8 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
 
   const [storedUsers, setStoredUsers] = useState(null);
+
+ 
 
   useEffect(() => {
     const user = localStorage.getItem("users");

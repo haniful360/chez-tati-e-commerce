@@ -1,12 +1,30 @@
-'use client'
+"use client";
 import withAuth from "@/components/protectedRoute/withAuth";
 import Image from "next/image";
 import avater from "@/public/images/user.png";
 
-
 const UserProfile = () => {
+  const orders = [
+    {
+      id: "#738",
+      date: "8 Sep, 2020",
+      total: "$135.00",
+      status: "Processing",
+    },
+    {
+      id: "#703",
+      date: "24 May, 2020",
+      total: "$25.00",
+      status: "On the way",
+    },
+    {
+      id: "#130",
+      date: "22 Oct, 2020",
+      total: "$250.00",
+      status: "Completed",
+    },
+  ];
   return (
-    
     <div className="lg:col-span-3 space-y-6">
       {/* Profile Info */}
       <div className="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -51,26 +69,7 @@ const UserProfile = () => {
             </tr>
           </thead>
           <tbody>
-            {[
-              {
-                id: "#738",
-                date: "8 Sep, 2020",
-                total: "$135.00",
-                status: "Processing",
-              },
-              {
-                id: "#703",
-                date: "24 May, 2020",
-                total: "$25.00",
-                status: "On the way",
-              },
-              {
-                id: "#130",
-                date: "22 Oct, 2020",
-                total: "$250.00",
-                status: "Completed",
-              },
-            ].map((order, index) => (
+            {orders.map((order, index) => (
               <tr key={index} className="border-b">
                 <td className="py-2">{order.id}</td>
                 <td className="py-2">{order.date}</td>
