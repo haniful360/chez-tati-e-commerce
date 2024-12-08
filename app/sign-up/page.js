@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +17,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+
 
   const breadcrumbs = [{ label: <HomeIcon />, href: "/" }, { label: "SignUp" }];
 
@@ -45,7 +46,17 @@ const SignUp = () => {
     existingUsers.push({ email, password });
     localStorage.setItem("users", JSON.stringify(existingUsers));
 
-    setSuccess(true);
+    // Show SweetAlert success message
+    Swal.fire({
+      icon: "success",
+      title: "Registration Successful!",
+      text: "You can now sign in with your account.",
+      confirmButtonColor: "#EA5326",
+    }).then(() => {
+      // Redirect to the sign-in page
+      window.location.href = "/sign-in";
+    });
+
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -67,11 +78,6 @@ const SignUp = () => {
 
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
-          )}
-          {success && (
-            <div className="text-green-500 text-center mb-4">
-              Registration Successful!
-            </div>
           )}
 
           <form onSubmit={handleSubmit}>
