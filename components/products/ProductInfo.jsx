@@ -14,6 +14,7 @@ const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const basePrice = product.product.price; // Base price from the product object
   const [totalPrice, setTotalPrice] = useState(basePrice); // Calculate total price based on quantity
+  const router = useRouter();
 
   // Function to update quantity
   const updateQuantity = (action) => {
@@ -37,7 +38,6 @@ const ProductInfo = ({ product }) => {
     const isProductInCart = cart.some((item) => item.id === product.id);
 
     if (isProductInCart) {
-      // Show error alert
       Swal.fire({
         title: `Product is already in your cart.`,
         icon: "error",
@@ -49,7 +49,7 @@ const ProductInfo = ({ product }) => {
       // Add to cart and show success alert
       addToCart(product);
       Swal.fire({
-        title: "Product has been added to your cart.",
+        title: "Product added to your cart.",
         icon: "success",
         confirmButtonText: "OK",
         timer: 2000,
@@ -58,6 +58,29 @@ const ProductInfo = ({ product }) => {
     }
   };
 
+  const handleBuyNow = (product) => {
+    // Check if the product is already in the cart
+    const isProductInCart = cart.some((item) => item.id === product.id);
+
+    if (isProductInCart) {
+      router.push("/shopping-cart");
+    } else {
+      // Add the product to the cart if it's not in the cart
+      addToCart(product);
+
+      Swal.fire({
+        title: "Product Added!",
+        text: "The product has been added to your cart.",
+        icon: "success",
+        timer: 1500, // The SweetAlert will automatically close after 1.5 seconds
+        showConfirmButton: false, // Hide the confirm button
+      });
+
+      setTimeout(() => {
+        router.push("/shopping-cart");
+      }, 1000); 
+    }
+  };
   return (
     <div className="lg:w-1/2">
       <h2 className="text-2xl font-bold">{product.product.title}</h2>
@@ -100,7 +123,7 @@ const ProductInfo = ({ product }) => {
         </div>
         <Link href='/shopping-cart'>
           <button
-            // onClick={handleBuyNow}
+            onClick={()=>handleBuyNow(product.product)}
             className="bg-[#EA5326] hover:bg-orange-500 text-white px-6 py-3 rounded-full transition flex items-center gap-2"
           >
             Buy Now

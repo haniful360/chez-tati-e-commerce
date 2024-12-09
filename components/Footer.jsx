@@ -42,19 +42,20 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Account</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <Link href="#">My Account</Link>
+                <Link href="/user/profile">My Account</Link>
               </li>
               <li>
-                <Link href="#">Login / Register</Link>
+                <Link href="/sign-in">Login /</Link>
+                <Link href="/sign-up"> Register</Link>
               </li>
               <li>
-                <Link href="#">Cart</Link>
+                <Link href="/shopping-cart">Cart</Link>
               </li>
               <li>
-                <Link href="#">Wishlist</Link>
+                <Link href="/wishlist-products">Wishlist</Link>
               </li>
               <li>
-                <Link href="#">Shop</Link>
+                <Link href="/products">Shop</Link>
               </li>
             </ul>
           </div>
@@ -63,16 +64,16 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Quick Link</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <Link href="#">Privacy Policy</Link>
+                <Link href="/privacy-policy">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="#">Terms of Use</Link>
+                <Link href="/terms-conditon">Terms of Use</Link>
               </li>
               <li>
                 <Link href="#">FAQ</Link>
               </li>
               <li>
-                <Link href="#">Contact</Link>
+                <Link href="/contact-us">Contact</Link>
               </li>
             </ul>
           </div>
