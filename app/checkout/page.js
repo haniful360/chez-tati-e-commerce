@@ -10,7 +10,7 @@ export const metadata = {
 const Checkout = () => {
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
-    { label: "checkout" },
+    { label: "Checkout" },
   ];
 
   return (
