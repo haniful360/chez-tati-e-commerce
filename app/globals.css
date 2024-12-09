@@ -5,3 +5,12 @@
 body{
   overflow-x: hidden;
 }
+.magnifier{
+  width: 100%!important;
+  height: 100%!important;
+}
+
+.magnifier-image{
+  border-radius:5px!important;
+  height: 100%!important;
+}

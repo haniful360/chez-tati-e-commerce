@@ -5,8 +5,8 @@ import Magnifier from "react-magnifier";
 const PorductImage = ({product}) => {
   return (
     <div className="flex flex-col gap-4 lg:w-1/2">
-      <div className="border rounded-md overflow-hidden p-2">
-      <Magnifier src={product.product.image} width={500} />
+      <div className=" rounded-md overflow-hidden p-2 w-11/12">
+      <Magnifier src={product.product.image} width={500} className="rounded-lg" />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">

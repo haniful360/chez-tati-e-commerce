@@ -73,8 +73,8 @@ const ProductInfo = ({ product }) => {
       <div className="mt-4 flex items-center gap-4">
         <span className="text-gray-400 line-through">$48.00</span>
         <span className="text-xl font-bold text-orange-500">${totalPrice}</span>
-        <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
-          {product.product.discount} Off
+        <span className="text-sm text-white bg-orange-500 font-semibold px-2 py-1 rounded-md">
+          {product.product.discount} % Off
         </span>
       </div>
       <hr className="my-5" />
