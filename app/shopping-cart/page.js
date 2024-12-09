@@ -100,9 +100,9 @@ export default function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart.map((item) => (
+                    {cart.map((item,index) => (
                       <tr
-                        key={item.id}
+                        key={index}
                         className="border-b hover:bg-gray-50 transition ease-in duration-300"
                       >
                         <td className="py-4 px-2">
@@ -119,7 +119,7 @@ export default function Cart() {
                               <div className="w-16 h-16 bg-gray-200 rounded-md"></div>
                             )}
                             <span className="text-sm lg:text-base">
-                              {item.title.slice(0, 60)}
+                              {item.title}
                             </span>
                           </div>
                         </td>
