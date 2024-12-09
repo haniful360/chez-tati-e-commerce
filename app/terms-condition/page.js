@@ -12,7 +12,7 @@ export const metadata = {
 const TermsCondition = () => {
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
-    { label: "About Us" },
+    { label: "Terms & Conditon" },
   ];
 
   return (

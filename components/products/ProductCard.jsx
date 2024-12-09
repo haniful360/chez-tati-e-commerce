@@ -1,22 +1,46 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import Swal from "sweetalert2";
 import { useWishlist } from "@/context/WishListContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCartIcon from "../svg/ProductCartIcon";
 import WishlistIcon from "../svg/WishlistIcon";
 import WishlistFilled from "../svg/WishlistFilled";
+
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({ product }) => {
   const { title, price, image, isOutOfStock, discount } = product;
   const { cart, addToCart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
   const [loading, setLoading] = useState(false);
-
+  const [storedUsers, setStoredUsers] = useState(null);
+  
+  
   const isProductInWishlist = wishlist.some((item) => item.id === product.id);
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = localStorage.getItem("users");
+    setStoredUsers(user);
+  }, []);
 
   const handleWishlistToggle = () => {
+    if (!storedUsers) {
+      Swal.fire({
+        title: "Authentication Required",
+        text: "You need to log in to add products to your wishlist.",
+        icon: "warning",
+        confirmButtonText: "Sign In",
+      }).then(() => {
+
+        router.push("/sign-in");
+      });
+      return;
+    }
+
     setLoading(true);
 
     // Simulate a delay of 1 second (1000ms)
@@ -121,9 +145,9 @@ const ProductCard = ({ product }) => {
         {loading ? (
           <div className="w-4 h-4 border-2 border-t-4 border-gray-600 border-t-transparent rounded-full animate-spin"></div> // Loading spinner
         ) : isProductInWishlist ? (
-          <WishlistFilled/>
+          <WishlistFilled />
         ) : (
-          <WishlistIcon/>
+          <WishlistIcon />
         )}
       </button>
 

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useWishlist } from "@/context/WishListContext";
 import WishlistFilled from "../svg/WishlistFilled";
 import WishlistIcon from "../svg/WishlistIcon";
+import { useRouter } from "next/navigation";
 
 
 export default function Products() {
@@ -15,7 +16,14 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [loadingWishlist, setLoadingWishlist] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8; // Set number of products per page
+  const productsPerPage = 8;
+  const [storedUsers, setStoredUsers] = useState(null);
+  const router = useRouter()
+
+  useEffect(() => {
+    const user = localStorage.getItem("users");
+    setStoredUsers(user);
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,6 +47,18 @@ export default function Products() {
   const { wishlist, toggleWishlist } = useWishlist();
 
   const handleWishlistToggle = async (product) => {
+    if (!storedUsers) {
+      Swal.fire({
+        title: "Authentication Required",
+        text: "You need to log in to add products to your wishlist.",
+        icon: "warning",
+        confirmButtonText: "Sign In",
+      }).then(() => {
+
+        router.push("/sign-in");
+      });
+      return;
+    }
     const isProductInWishlist = wishlist.some((item) => item.id === product.id);
     setLoadingWishlist(product.id);
 

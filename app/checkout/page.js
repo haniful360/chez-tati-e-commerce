@@ -2,6 +2,11 @@ import React from "react";
 import banner from "@/public/images/banner-section.png";
 import HomeIcon from "@/components/svg/HomeIcon";
 import PageBanner from "@/components/PageBanner";
+
+export const metadata = {
+  title: "Checkout | Chez Tati",
+  description: "Get in touch with Chez Tati. We are available 24/7.",
+};
 const Checkout = () => {
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
