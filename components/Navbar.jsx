@@ -61,7 +61,7 @@ const Navbar = () => {
               alt="Chez Tati"
               width={40}
               height={40}
-              className="w-[146] h-[56px] md:w-[186px] lg:h-[86px]"
+              className="w-[120px] h-[56px] md:w-[186px] lg:h-[86px]"
             />
           </Link>
         </div>

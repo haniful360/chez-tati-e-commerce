@@ -8,24 +8,36 @@ import UpArrow from "../svg/UpArrow";
 
 const Banner = () => {
   return (
-    <section className="py-12 font-sans mt-20 md:mt-24 lg:mt-32">
+    <section className="py-8 font-sans mt-20 md:mt-24 lg:mt-32">
       <div className="max-w-[1320px] mx-auto px-4 text-center">
-        <h2  data-aos="fade-up" className="text-[30px] sm:text-[50px] md:text-[60px] lg:text-[80px] text-[#232323] font-bold leading-[1.2] lg:leading-[99px] mb-4 text-center">
+        <h2
+          data-aos="fade-up"
+          className="text-[30px] sm:text-[50px] md:text-[60px] lg:text-[80px] text-[#232323] font-bold leading-[1.2] lg:leading-[99px] mb-4 text-center"
+        >
           The Best High-Quality
           <span className="text-[#232323] font-medium">
             <br /> Home Appliance
           </span>
           Products
         </h2>
-        <p data-aos="fade-up" className="text-[#232323] text-sm md:text-[20px] mb-4 md:mb-8">
+        <p
+          data-aos="fade-up"
+          className="text-[#232323] text-sm md:text-[20px] mb-4 md:mb-8"
+        >
           100+ Collections for your outfit inspirations this summer
         </p>
-        <button data-aos="fade-up" className="sm:w-[220px] md:w-[280px] lg:w-[344px] h-[40px] sm:h-[58px] rounded-[36px] px-3 py-2 md:px-6 md:py-3 bg-black text-white font-medium hover:bg-gray-800 text-center">
+        <button
+          data-aos="fade-up"
+          className="sm:w-[220px] md:w-[280px] lg:w-[344px] h-[40px] sm:h-[58px] rounded-[36px] px-3 py-2 mb-2 md:px-6 md:py-3 bg-black text-white font-medium hover:bg-gray-800 text-center"
+        >
           View Category
         </button>
 
         {/* banner image */}
-        <div  data-aos="fade-up" className="flex flex-col md:flex-row justify-center items-center p-4 bg-gray-50 rounded-lg mt-2 md:mt-8">
+        <div
+          data-aos="fade-up"
+          className="flex flex-col md:flex-row justify-center items-center p-4 bg-gray-50 rounded-lg mt-2 md:mt-8"
+        >
           {/* Left Image */}
           <div className="relative w-full max-w-[1168px] h-auto md:h-[442px] p-4">
             <Image
@@ -38,8 +50,8 @@ const Banner = () => {
             <span className="absolute top-6 left-8 bg-white px-3 py-1 text-xs sm:text-sm lg:text-xl font-medium rounded-full shadow-md">
               cheztati.ca
             </span>
-            <Link href="" className="absolute bottom-10 left-8">
-              <button className="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[70px] md:h-[70px] lg:w-[130px] lg:h-[130px] bg-[#EB2926] text-white py-2 px-4 rounded-full shadow-md flex flex-col items-center justify-center">
+            <Link href="/products" className="absolute bottom-10 left-8">
+              <button className="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[70px] md:h-[70px] lg:w-[110px] lg:h-[110px] bg-[#EB2926] text-white py-2 px-4 rounded-full shadow-md flex flex-col items-center justify-center transform transition duration-300 hover:scale-110 hover:bg-red-600 hover:shadow-lg">
                 <div className="flex justify-center">
                   <UpArrow />
                 </div>

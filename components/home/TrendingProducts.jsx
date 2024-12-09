@@ -117,7 +117,7 @@ export default function Products() {
           <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
             Products
           </h1>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap justify-end">
             {categories.map(({ label, className }) => (
               <button
                 key={label}

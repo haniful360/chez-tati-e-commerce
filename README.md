@@ -15,5 +15,5 @@ bun dev
 ```
 
 # Clone Chez Tati e-commerce website
-# My website link: 
+# Website link: https://chez-tati.vercel.app/
 Overview: The project is a frontend replica of the Chez Tati website, designed as an e-commerce platform. The backend functionality is not implemented, and a fake API is used for product data, which is stored in the browser’s local storage. The website includes basic user authentication (login and registration), along with a simple, user-friendly dashboard for users.

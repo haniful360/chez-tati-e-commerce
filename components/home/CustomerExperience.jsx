@@ -134,15 +134,15 @@ export default function CustomerExperience() {
   return (
     <div className="bg-gray-50 py-12">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 mb-4">
-        <h2 className="text-2xl sm:text-3xl lg:text-[46px] font-bold text-gray-900 leading-[50px]" data-aos="fade-up">
-          Customer experience is <br /> <br /> important to us
+        <h2 className="text-2xl lg:text-5xl font-bold text-gray-900" >
+          Customer experience is <br /> important to us
         </h2>
-        <p className="mt-4 text-[#EA5326] text-[24px] my-5" data-aos="fade-up">
+        <p className="text-[#EA5326] text-sm md:text-2xl py-4 md:py-10" >
           Sed dictum ipsum elementum diam dapibus, ut sodales orci monte <br />
           consectetur. Fusce a mollis lorem. Orci varius natoque penatibus.
         </p>
 
-        <div className="flex flex-wrap lg:justify-between gap-12 mt-8 px-4 lg:px-0" data-aos="fade-up">
+        <div className="flex flex-wrap lg:justify-between gap-12 mt-4 px-4 lg:px-0" data-aos="fade-up">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col ">
               <div className=" text-white rounded-full p-4">{feature.icon}</div>
