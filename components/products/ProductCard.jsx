@@ -43,19 +43,16 @@ const ProductCard = ({ product }) => {
 
     setLoading(true);
 
-    // Simulate a delay of 1 second (1000ms)
     setTimeout(() => {
       toggleWishlist(product);
       setLoading(false);
 
-      // Show the success/failure alert
       Swal.fire({
-        title: `Wishlist Updated!`,
-        text: `Product has been ${
+        title: `Product ${
           isProductInWishlist ? "removed from" : "added to"
-        } your wishlist.`,
+        } wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
-        confirmButtonText: "OK",
+        // confirmButtonText: "OK",
         timer: 2000,
         timerProgressBar: true,
       });

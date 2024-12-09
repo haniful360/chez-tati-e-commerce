@@ -5,7 +5,6 @@ import ProductInfo from "@/components/products/ProductInfo";
 import CustomerFeedback from "@/components/products/CustomerFeedback";
 import ProductCard from "@/components/products/ProductCard";
 import banner from "@/public/images/banner-section.png";
-import Image from "next/image";
 import Loading from "@/components/loading";
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
@@ -76,7 +75,7 @@ const ProductDynamicPage = ({ params }) => {
   ];
 
   return (
-    <div className="bg-gray-100  md:pb-8">
+    <div className="md:pb-8">
       <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
       <div className="max-w-[1280px] mx-auto p-6 mb-12">
         {/* Product Section */}
