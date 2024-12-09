@@ -35,9 +35,33 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prev) => prev.filter((item) => item.id !== productId));
+  };
+
+  const updateCart = (productId, operation) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId
+          ? {
+              ...item,
+              quantity:
+                operation === "increment"
+                  ? item.quantity + 1
+                  : Math.max(item.quantity - 1, 1),
+            }
+          : item
+      )
+    );
+  };
+
+  const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart"); 
+  };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart ,clearCart, updateCart}}>
       {children}
     </CartContext.Provider>
   );

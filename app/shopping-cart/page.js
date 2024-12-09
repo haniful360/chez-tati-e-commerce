@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import banner from "@/public/images/banner-section.png";
 import Image from "next/image";
 import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
 import CrossIcon from "@/components/svg/CrossIcon";
+import { useCart } from "@/context/CartContext";
 
 export default function Cart() {
-  const [cart, setCart] = useState([]);
+  const { cart, removeFromCart, clearCart, updateCart } = useCart();
 
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
@@ -20,56 +21,13 @@ export default function Cart() {
     document.title = "Shopping Cart | Chez Tati";
   }, []);
 
-  // Load cart data from localStorage
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(savedCart);
-  }, []);
-
-  // Update cart data in localStorage whenever the cart changes
-  useEffect(() => {
-    if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  }, [cart]);
-
-  // Add product to cart (check if product already exists and update quantity)
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        // If the item already exists in the cart, increase its quantity
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        // If the item does not exist, add it to the cart
-        return [...prevCart, { ...product, quantity: 1 }];
-      }
-    });
-  };
-
   // Update quantity of existing cart item
   const updateQuantity = (id, operation) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity:
-                operation === "increment"
-                  ? item.quantity + 1
-                  : Math.max(item.quantity - 1, 1),
-            }
-          : item
-      )
-    );
+    updateCart(id, operation); 
   };
+  
 
-  // Subtotal calculation
+  // Calculate subtotal
   const subtotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -103,9 +61,9 @@ export default function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart.map((item, index) => (
+                    {cart.map((item) => (
                       <tr
-                        key={index}
+                        key={item.id}
                         className="border-b hover:bg-gray-50 transition ease-in duration-300"
                       >
                         <td className="py-4 px-2">
@@ -122,7 +80,7 @@ export default function Cart() {
                               <div className="w-16 h-16 bg-gray-200 rounded-md"></div>
                             )}
                             <span className="text-sm lg:text-base">
-                              {item.title.slice(0,60)}
+                              {item.title.slice(0, 60)}
                             </span>
                           </div>
                         </td>
@@ -132,9 +90,7 @@ export default function Cart() {
                         <td className="px-2">
                           <div className="flex items-center gap-3 border-2 border-gray-300 w-[105px] rounded-full">
                             <button
-                              onClick={() =>
-                                updateQuantity(item.id, "decrement")
-                              }
+                              onClick={() => updateQuantity(item.id, "decrement")}
                               className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full hover:bg-[#EA5326] hover:text-white transition ease-in duration-300"
                             >
                               -
@@ -143,9 +99,7 @@ export default function Cart() {
                               {item.quantity}
                             </span>
                             <button
-                              onClick={() =>
-                                updateQuantity(item.id, "increment")
-                              }
+                              onClick={() => updateQuantity(item.id, "increment")}
                               className="flex justify-center items-center w-[39px] h-[35px] shadow bg-gray-100 rounded-full hover:bg-[#EA5326] hover:text-white transition ease-in duration-300"
                             >
                               +
@@ -168,11 +122,7 @@ export default function Cart() {
                                 confirmButtonText: "Yes, Remove it",
                               }).then((result) => {
                                 if (result.isConfirmed) {
-                                  setCart((prevCart) =>
-                                    prevCart.filter(
-                                      (cartItem) => cartItem.id !== item.id
-                                    )
-                                  );
+                                  removeFromCart(item.id);
                                   Swal.fire(
                                     "Removed!",
                                     "The item has been removed from your cart.",
@@ -209,8 +159,7 @@ export default function Cart() {
                       confirmButtonText: "Yes, Clear Cart",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        setCart([]); // Clear the cart in the state
-                        localStorage.removeItem("cart"); // Remove the cart from localStorage
+                        clearCart();
                         Swal.fire(
                           "Cleared!",
                           "Your cart has been emptied.",
@@ -236,8 +185,7 @@ export default function Cart() {
                 <span>Free</span>
               </div>
               <button
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() =>
                   Swal.fire({
                     title: "Proceed to Checkout?",
                     text: "Are you sure you want to proceed to the checkout page?",
@@ -250,8 +198,8 @@ export default function Cart() {
                     if (result.isConfirmed) {
                       window.location.href = "/checkout";
                     }
-                  });
-                }}
+                  })
+                }
                 className="w-full mt-4 px-4 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300"
               >
                 Proceed to checkout

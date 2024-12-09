@@ -21,7 +21,7 @@ const TermsCondition = () => {
 
       <div className="max-w-[1320px] mx-auto px-6 lg:px-12 py-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
-          About us
+        Terms & Conditon
         </h1>
 
         <p className="text-base md:text-lg leading-relaxed mb-8 text-gray-700">

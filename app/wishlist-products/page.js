@@ -36,8 +36,7 @@ const WishlistProducts = () => {
 
       const action = isProductInWishlist ? "removed from" : "added to";
       Swal.fire({
-        title: `Wishlist Updated!`,
-        text: `${product.title} has been ${action} your wishlist.`,
+        title: `Product ${action} your wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
         confirmButtonText: "OK",
         timer: 2000,
@@ -50,19 +49,19 @@ const WishlistProducts = () => {
     const isProductInCart = cart.some((item) => item.id === product.id);
 
     if (isProductInCart) {
+      // Show error alert
       Swal.fire({
-        title: "Already in Cart",
-        text: `${product.title} is already in your cart.`,
+        title: `Product is already in your cart.`,
         icon: "error",
         confirmButtonText: "OK",
         timer: 2000,
         timerProgressBar: true,
       });
     } else {
+      // Add to cart and show success alert
       addToCart(product);
       Swal.fire({
-        title: "Added to Cart!",
-        text: `${product.title} has been added to your cart.`,
+        title: "Product has been added to your cart.",
         icon: "success",
         confirmButtonText: "OK",
         timer: 2000,

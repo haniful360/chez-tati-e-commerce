@@ -39,8 +39,7 @@ const ProductInfo = ({ product }) => {
     if (isProductInCart) {
       // Show error alert
       Swal.fire({
-        title: "Already in Cart",
-        text: `${product.title} is already in your cart.`,
+        title: `Product is already in your cart.`,
         icon: "error",
         confirmButtonText: "OK",
         timer: 2000,
@@ -50,8 +49,7 @@ const ProductInfo = ({ product }) => {
       // Add to cart and show success alert
       addToCart(product);
       Swal.fire({
-        title: "Added to Cart!",
-        text: `${product.title} has been added to your cart.`,
+        title: "Product has been added to your cart.",
         icon: "success",
         confirmButtonText: "OK",
         timer: 2000,
