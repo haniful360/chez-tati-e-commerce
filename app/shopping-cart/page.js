@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import banner from "@/public/images/banner-section.png";
 import Image from "next/image";
@@ -8,14 +8,23 @@ import PageBanner from "@/components/PageBanner";
 import HomeIcon from "@/components/svg/HomeIcon";
 import CrossIcon from "@/components/svg/CrossIcon";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart, updateCart } = useCart();
+  const [storedUsers, setStoredUsers] = useState(null);
+  const router = useRouter();
+
 
   const breadcrumbs = [
     { label: <HomeIcon />, href: "/" },
     { label: "Shopping-Cart" },
   ];
+
+  useEffect(() => {
+    const user = localStorage.getItem("users");
+    setStoredUsers(user);
+  }, []);
 
   useEffect(() => {
     document.title = "Shopping Cart | Chez Tati";
@@ -32,6 +41,36 @@ export default function Cart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const handleCheckout = () =>{
+    // if not user auth
+    if (!storedUsers) {
+      Swal.fire({
+        title: "Authentication Required",
+        text: "You need to log in to add products to your wishlist.",
+        icon: "warning",
+        confirmButtonText: "Sign In",
+      }).then(() => {
+
+        router.push("/sign-in");
+      });
+      return;
+    }
+    // proceed checkout
+    Swal.fire({
+      title: "Proceed to Checkout?",
+      text: "Are you sure you want to proceed to the checkout page?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#EA5326",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Proceed",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "/checkout";
+      }
+    })
+  }
 
   return (
     <div>
@@ -185,21 +224,7 @@ export default function Cart() {
                 <span>Free</span>
               </div>
               <button
-                onClick={() =>
-                  Swal.fire({
-                    title: "Proceed to Checkout?",
-                    text: "Are you sure you want to proceed to the checkout page?",
-                    icon: "question",
-                    showCancelButton: true,
-                    confirmButtonColor: "#EA5326",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, Proceed",
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      window.location.href = "/checkout";
-                    }
-                  })
-                }
+                onClick={handleCheckout}
                 className="w-full mt-4 px-4 py-2 bg-[#EA5326] hover:bg-orange-500 text-white rounded-lg transition-all ease-in duration-300"
               >
                 Proceed to checkout
