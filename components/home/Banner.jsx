@@ -77,7 +77,7 @@ const Banner = () => {
                   Electronics Gadgets
                 </h3>
               </div>
-              <Link href="">
+              <Link href="/products">
                 <button className="border border-red-500 text-red-500 bg-white py-2 px-4 sm:px-6 md:px-8 lg:px-10 rounded-full flex justify-center items-center w-full sm:w-[220px] md:w-[280px] lg:w-[332px] transition-all duration-300 hover:bg-red-500 hover:text-white">
                   <span className="mr-2 text-sm sm:text-base md:text-lg">
                     Shop Now

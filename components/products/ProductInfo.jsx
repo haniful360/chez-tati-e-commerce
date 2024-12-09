@@ -9,7 +9,6 @@ import Link from "next/link";
 
 const ProductInfo = ({ product }) => {
   const { cart, addToCart } = useCart();
-  const router = useRouter();
 
   // State for quantity and price
   const [quantity, setQuantity] = useState(1);
@@ -75,7 +74,7 @@ const ProductInfo = ({ product }) => {
         <span className="text-gray-400 line-through">$48.00</span>
         <span className="text-xl font-bold text-orange-500">${totalPrice}</span>
         <span className="text-sm text-white bg-orange-500 px-2 py-1 rounded-md">
-          64% Off
+          {product.product.discount} Off
         </span>
       </div>
       <hr className="my-5" />

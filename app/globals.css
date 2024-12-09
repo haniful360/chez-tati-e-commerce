@@ -5,22 +5,3 @@
 body{
   overflow-x: hidden;
 }
-
-/* In your global styles (optional for custom range appearance) */
-.custom-range {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  background: #ddd;
-  border-radius: 5px;
-}
-
-.custom-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: orangered;
-  border-radius: 50%;
-  cursor: pointer;
-}

@@ -1,17 +1,12 @@
 import Image from "next/image";
 import React from "react";
+import Magnifier from "react-magnifier";
 
 const PorductImage = ({product}) => {
   return (
     <div className="flex flex-col gap-4 lg:w-1/2">
       <div className="border rounded-md overflow-hidden p-2">
-        <Image
-          width={100}
-          height={100}
-          src={product.product.image}
-          alt="Smart Freezer"
-          className="w-full h-96 rounded-lg"
-        />
+      <Magnifier src={product.product.image} width={500} />
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">
