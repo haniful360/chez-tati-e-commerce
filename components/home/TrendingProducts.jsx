@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import Swal from "sweetalert2";
 import { useWishlist } from "@/context/WishListContext";
 import WishlistFilled from "../svg/WishlistFilled";
@@ -15,10 +14,11 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingWishlist, setLoadingWishlist] = useState(null);
+  const { wishlist, toggleWishlist } = useWishlist(); //custom hook
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8;
   const [storedUsers, setStoredUsers] = useState(null);
   const router = useRouter()
+  const productsPerPage = 8;
 
   useEffect(() => {
     const user = localStorage.getItem("users");
@@ -44,9 +44,10 @@ export default function Products() {
     fetchProducts();
   }, []);
 
-  const { wishlist, toggleWishlist } = useWishlist();
+ 
 
   const handleWishlistToggle = async (product) => {
+    // if not user auth
     if (!storedUsers) {
       Swal.fire({
         title: "Authentication Required",
@@ -69,8 +70,8 @@ export default function Products() {
       const action = isProductInWishlist ? "removed from" : "added to";
 
       Swal.fire({
-        title: "Wishlist Updated!",
-        text: `Product has been ${action} your wishlist.`,
+       
+        title: `Product ${action} your wishlist.`,
         icon: isProductInWishlist ? "info" : "success",
         confirmButtonText: "OK",
         timer: 2000,

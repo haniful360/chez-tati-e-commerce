@@ -132,12 +132,12 @@ export default function CustomerExperience() {
   ];
 
   return (
-    <div className="bg-gray-50 py-12">
+    <div className="py-12">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 mb-4">
-        <h2 className="text-2xl lg:text-5xl font-bold text-gray-900" >
+        <h2 className="text-2xl lg:text-5xl font-bold text-gray-900" data-aos="fade-up">
           Customer experience is <br /> important to us
         </h2>
-        <p className="text-[#EA5326] text-sm md:text-2xl py-4 md:py-10" >
+        <p className="text-[#EA5326] text-sm md:text-2xl py-4 md:py-6" data-aos="fade-up">
           Sed dictum ipsum elementum diam dapibus, ut sodales orci monte <br />
           consectetur. Fusce a mollis lorem. Orci varius natoque penatibus.
         </p>

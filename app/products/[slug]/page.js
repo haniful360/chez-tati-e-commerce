@@ -76,7 +76,7 @@ const ProductDynamicPage = ({ params }) => {
   ];
 
   return (
-    <div className="bg-gray-100  md:pb-8">
+    <div className="md:pb-8">
       <PageBanner backgroundImage={banner} breadcrumbs={breadcrumbs} />
       <div className="max-w-[1280px] mx-auto p-6 mb-12">
         {/* Product Section */}
